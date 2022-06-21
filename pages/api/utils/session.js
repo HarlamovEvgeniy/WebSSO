@@ -14,7 +14,7 @@ export const getSession = nextSession({
     new RedisStore({
       client: new Redis({
         port: 6379,
-        host: '127.0.0.1',
+        host: 'http://web-sso.vercel.app',
         username: 'my-sso',
       }),
     })
