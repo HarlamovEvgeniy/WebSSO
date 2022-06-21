@@ -2,8 +2,7 @@ import '../styles/common.scss';
 import Layout from '../src/layouts/default-layout';
 import Head from 'next/head';
 
-
-function MyApp({ Component, pageProps }) {
+function App({ Component, pageProps }) {
   return (
     <Layout>
       <Head>
@@ -16,4 +15,4 @@ function MyApp({ Component, pageProps }) {
   )
 }
 
-export default MyApp
+export default App;

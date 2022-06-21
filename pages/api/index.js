@@ -1,14 +1,19 @@
-import utils from './utils';
-import { getSession } from "./Session";
+import { getSession } from "./utils/session";
 
 export default async function handler(req, res) {
-  res.setHeader('Content-Type', 'application/json');
-  res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
   const session = await getSession(req, res);
 
-  if(session.id) {
-    res.send('API Version 24.06.2022');
+  if(session?.id) {
+    res.statusCode = 201;
+    res.json(session.id);
   } else {
-    res.statusCode = 400;
+    res.statusCode = 403;
+    res.send({ message: 'ID Not Used' })
   }
 }
+
+export const config = {
+  api: {
+    externalResolver: true,
+  },
+};

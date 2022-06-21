@@ -2,7 +2,6 @@ import Checkbox from '../src/components/Checkbox';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { getSession } from "./api/Session";
 import { QRCode as QRCodeLogo } from 'react-qrcode-logo';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import { Grid } from  'react-loader-spinner';
@@ -13,11 +12,12 @@ export default function QRCode({ session }) {
   const router = useRouter();
   const [loader, setLoader] = useState(true);
   const [timer, setTimer] = useState(299);
+
   const QRCodeJSON = {
-    endpoint: session.endpoint || null,
-    message: session.message || null,
-    method: session.message || null,
-    token: session.token || null,
+    endpoint: session?.endpoint || null,
+    message: session?.message || null,
+    method: session?.message || null,
+    token: session?.token || null,
   };
   const QRCodeValue = Buffer.from(JSON.stringify(QRCodeJSON), 'binary').toString('base64');
 
@@ -26,10 +26,10 @@ export default function QRCode({ session }) {
   }, 500);
 
   useEffect(() => {
-    if(session.token?.auth) {
+    if(session?.token?.auth) {
       router.push('/request');
     } else {
-      console.log(session.token?.auth)
+      console.log(session ?? '');
     }
   }, []);
 
@@ -144,14 +144,4 @@ export default function QRCode({ session }) {
     }
     </>
   );
-}
-
-export async function getServerSideProps({ req, res }) {
-  const session = await getSession(req, res);
-
-  return {
-    props: {
-      session: session,
-    },
-  };
 }

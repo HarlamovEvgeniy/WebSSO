@@ -1,7 +1,7 @@
 import utils from './utils';
-import { getSession } from "./Session";
+import { getSession } from "./utils/session";
 
-export default async function authorization(req, res) {
+export default async function handler(req, res) {
   res.setHeader('Content-Type', 'application/json');
   res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
   const session = await getSession(req, res);
@@ -22,7 +22,13 @@ export default async function authorization(req, res) {
     res.statusCode = 200;
     res.send(QRCode);
   } else {
-    res.statusCode = 404;
+    res.statusCode = 403;
     res.send('API Error');
   }
 }
+
+export const config = {
+  api: {
+    externalResolver: true,
+  },
+};

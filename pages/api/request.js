@@ -1,4 +1,4 @@
-import { getSession } from "./Session";
+import { getSession } from "./utils/session";
 
 export default async function request(req, res) {
   res.setHeader('Content-Type', 'application/json');

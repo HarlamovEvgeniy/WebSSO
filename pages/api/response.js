@@ -1,5 +1,5 @@
 import utils from './utils';
-import { getSession } from "./Session";
+import { getSession } from "./utils/session";
 
 export default async function response(req, res) {
   res.setHeader('Content-Type', 'application/json');
