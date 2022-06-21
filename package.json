@@ -1,0 +1,36 @@
+{
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@tonclient/core": "^1.30.0",
+    "@tonclient/lib-node": "^1.30.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.0",
+    "connect-redis": "^6.1.3",
+    "cors": "^2.8.5",
+    "everscale-did-sdk-radiance": "^0.1.3",
+    "express": "^4.18.1",
+    "express-session": "^1.17.3",
+    "ioredis": "^5.0.6",
+    "next": "12.1.6",
+    "next-session": "^4.0.4",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-input-mask": "^2.0.4",
+    "react-loader-spinner": "^5.1.5",
+    "react-qrcode-logo": "^2.7.0",
+    "redis": "^4.1.0"
+  },
+  "devDependencies": {
+    "eslint": "8.18.0",
+    "eslint-config-next": "12.1.6",
+    "sass": "^1.52.3"
+  }
+}
