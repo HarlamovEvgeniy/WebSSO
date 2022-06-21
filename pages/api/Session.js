@@ -7,7 +7,7 @@ const RedisStore = RedisStoreFactory(expressSession);
 export const getSession = nextSession({
   store: promisifyStore(
     new RedisStore({
-      client: new Redis(),
+      client: new Redis(6379, 'http://web-sso.vercel.app'),
     })
   ),
 });
