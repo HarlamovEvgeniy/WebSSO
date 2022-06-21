@@ -13,9 +13,9 @@ export const getSession = nextSession({
   store: promisifyStore(
     new RedisStore({
       client: new Redis({
-        port: 6379,
-        host: 'http://web-sso.vercel.app',
-        username: 'my-sso',
+        port: 37338,
+        host: 'eu1-suited-crayfish-37338.upstash.io',
+        password: 'd1f43ae71e6a422c93ab4f674a8ceab3',
       }),
     })
   )
