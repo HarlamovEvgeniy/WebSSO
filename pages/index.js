@@ -13,6 +13,8 @@ export default function QRCode({ session }) {
   const [loader, setLoader] = useState(true);
   const [timer, setTimer] = useState(299);
 
+  console.log(session);
+
   const QRCodeJSON = {
     endpoint: session?.endpoint || null,
     message: session?.message || null,
