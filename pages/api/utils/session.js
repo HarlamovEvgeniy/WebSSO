@@ -12,9 +12,7 @@ export const getSession = nextSession({
   },
   store: promisifyStore(
     new RedisStore({
-      client: new Redis({
-        host: process.env.REDIS_URL,
-      }),
+      client: new Redis(process.env.REDIS_URL),
     })
   )
 });
