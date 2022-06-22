@@ -8,7 +8,7 @@ export const getSession = nextSession({
   name: 'web-sso',
   cookie: {
     secure: true,
-    domain: 'localhost'
+    httpOnly: false,
   },
   store: promisifyStore(
     new RedisStore({
