@@ -3,12 +3,11 @@ import Link from 'next/link';
 
 export default function Sucess() {
   setTimeout(() => {
-    window.close();
+    window.close()
   }, 3000);
 
   const handleButton = (e) => {
     e.preventDefault();
-    window.close();
   }
 
   return(
@@ -29,7 +28,7 @@ export default function Sucess() {
       </div>
 
       <div className="content__btns">
-        <a onClick={() => { handleButton() }} href="https://test-authorization.vercel.app/" rel={'noreferrer'} className="btn btn--image btn--white mt-10">
+        <a onClick={(e) => { handleButton(e) }} href="https://test-authorization.vercel.app/" rel={'noreferrer'} className="btn btn--image btn--white mt-10">
           <Image alt="" width={26} height={26} src={'/back.svg'}/>
           Close and back
         </a>
