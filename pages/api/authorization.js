@@ -1,8 +1,15 @@
 import utils from './utils';
 import { getSession } from "./utils/session";
-import {btoa} from "next/dist/server/web/sandbox/polyfills";
+import { btoa } from "next/dist/server/web/sandbox/polyfills";
+import NextCors from 'nextjs-cors';
 
 export default async function handler(req, res) {
+  await NextCors(req, res, {
+    methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+    origin: '*',
+    optionsSuccessStatus: 200,
+  });
+
   res.setHeader('Content-Type', 'application/json');
   res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
   const session = await getSession(req, res);

@@ -1,6 +1,12 @@
 import { getSession } from "./utils/session";
+import NextCors from 'nextjs-cors';
 
 export default async function handler(req, res) {
+  await NextCors(req, res, {
+    methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+    origin: '*',
+    optionsSuccessStatus: 200,
+  });
   const session = await getSession(req, res);
 
   if(session?.id) {
