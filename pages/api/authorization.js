@@ -26,10 +26,12 @@ export default async function handler(req, res) {
       message: session.message || null,
       sessionToken: session.token || null
     }
-    const response = ('https://web-sso.vercel.app/?auth=' + btoa(JSON.stringify(QRCode))).toString();
+    const response = {
+      url: ('https://web-sso.vercel.app/?auth=' + btoa(JSON.stringify(QRCode))).toString()
+    }
 
     res.statusCode = 200;
-    res.send(response);
+    res.json(response);
   } else {
     res.statusCode = 403;
     res.send('API Error');
