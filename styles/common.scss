@@ -57,6 +57,7 @@ p {
   font-size: 18px;
   line-height: 125%;
   color: $black;
+  text-decoration: none;
 
   &--gray {
     color: $darkGray;
@@ -72,6 +73,14 @@ p {
     }
   }
 }
+a.description {
+  transition: $transition;
+
+  &:hover {
+    color: $orange;
+  }
+}
+
 .mt {
   &-10 { margin-top: 10px }
   &-20 { margin-top: 20px }

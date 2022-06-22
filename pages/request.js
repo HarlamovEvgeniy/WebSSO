@@ -5,7 +5,10 @@ export default function Request(props) {
   return(
     <div className="content">
       <div className="content__header">
-        <h1>Okko</h1>
+        <h1>Startup Landing</h1>
+        <a className={"description description--gray"} href="https://test-authorization.vercel.app/" target={"_blank"} rel={"noreferrer"}>
+          test-authorization.vercel.app
+        </a>
       </div>
 
       <div className="content__request">
@@ -17,7 +20,7 @@ export default function Request(props) {
 
           <div className="list mt-20 mb-20">
             <span>List of requested data</span>
-            <p>FIO, Birthday</p>
+            <p>FIO, Did Document</p>
           </div>
 
 
@@ -29,7 +32,7 @@ export default function Request(props) {
         </div>
         <div className="content__request-right">
           <div className="content__request--logo">
-            <Image alt="" width={"82px"} height="82px" src={"/Okko.svg"}></Image>
+            <Image alt="" width={"82px"} height="82px" src={"/StartupLanding.svg"}></Image>
           </div>
         </div>
       </div>

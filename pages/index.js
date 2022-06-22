@@ -6,7 +6,7 @@ import { QRCode as QRCodeLogo } from 'react-qrcode-logo';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import { Grid } from  'react-loader-spinner';
 import {useRouter} from "next/router";
-
+import {getSession} from "./api/utils/session";
 
 export default function QRCode({ session }) {
   const router = useRouter();
@@ -28,8 +28,6 @@ export default function QRCode({ session }) {
   useEffect(() => {
     if(session?.token?.auth) {
       router.push('/request');
-    } else {
-      console.log(session ?? '');
     }
   }, []);
 
@@ -55,8 +53,7 @@ export default function QRCode({ session }) {
           <div className="content__code">
             <div className="content__code-left">
               <p className="description">
-                Scan the QR code in the <a target={"_blank"} href="https://play.google.com/store/games?hl=ru&gl=US"
-                                           rel="noreferrer">Defispace App</a>
+                Scan the QR code in the <a target={"_blank"} href="https://play.google.com/store/games?hl=ru&gl=US" rel="noreferrer">Defispace App</a>
               </p>
 
               <Checkbox id="remember-me" label="Remember me"/>
@@ -95,16 +92,20 @@ export default function QRCode({ session }) {
               </div>
             </div>
             <div className="content__code-right">
-              <QRCodeLogo
-                value={QRCodeValue}
-                eyeRadius={14}
-                qrStyle={"squares"}
-                size={265}
-                fgColor={'#28303F'}
-                logoImage={'/QRCodeLogo.svg'}
-                logoWidth={100}
-                logoHeight={100}
-              />
+              {
+                timer > 0 ?
+                  <QRCodeLogo
+                    value={QRCodeValue}
+                    eyeRadius={14}
+                    qrStyle={"squares"}
+                    size={265}
+                    fgColor={'#28303F'}
+                    logoImage={'/QRCodeLogo.svg'}
+                    logoWidth={100}
+                    logoHeight={100}
+                  />
+                : <></>
+              }
             </div>
           </div>
           <div className="content__links">
@@ -138,10 +139,31 @@ export default function QRCode({ session }) {
           <Grid
             color="#F1704A"
             height={120}
-            width={120}
+            width={90}
           />
       </div>
     }
     </>
   );
 }
+
+
+export async function getServerSideProps(ctx) {
+  try {
+    if(ctx?.req && ctx?.res) {
+      const session = await getSession(ctx?.req, ctx?.res);
+      return {
+        props: {
+          session: session,
+        }
+      }
+
+    } else {
+      return false;
+    }
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
+}
+

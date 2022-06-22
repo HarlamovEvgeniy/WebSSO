@@ -6,13 +6,13 @@ export const Footer = () => {
       <div className={'container'}>
         <div className="footer__divider"></div>
         <nav className="footer__menu">
-          <Link className="footer__menu--link" href={"#"}>
+          <Link className="footer__menu--link" href={"/about"}>
             How it work?
           </Link>
-          <Link className="footer__menu--link" href={"#"}>
+          <Link className="footer__menu--link" href={"/partners"}>
             For partners
           </Link>
-          <Link className="footer__menu--link" href={"#"}>
+          <Link className="footer__menu--link" href={"/for-developers"}>
             For developers
           </Link>
         </nav>
