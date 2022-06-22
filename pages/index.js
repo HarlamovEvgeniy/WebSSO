@@ -7,28 +7,25 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import { Grid } from  'react-loader-spinner';
 import {useRouter} from "next/router";
 import {getSession} from "./api/utils/session";
+const atob = require('atob')
 
 export default function QRCode({ session }) {
   const router = useRouter();
   const [loader, setLoader] = useState(true);
   const [timer, setTimer] = useState(299);
 
-  console.log(session);
-
-  const QRCodeJSON = {
-    endpoint: session?.endpoint || null,
-    message: session?.message || null,
-    method: session?.message || null,
-    token: session?.token || null,
-  };
-  const QRCodeValue = Buffer.from(JSON.stringify(QRCodeJSON), 'binary').toString('base64');
+  const { auth } = router.query;
+  if(auth) {
+    const bin = JSON.parse(atob(auth));
+    console.log(bin);
+  }
 
   setTimeout(() => {
     setLoader(false);
   }, 500);
 
   useEffect(() => {
-    if(session?.token?.auth) {
+    if(session?.auth) {
       router.push('/request');
     }
   }, []);
@@ -97,7 +94,7 @@ export default function QRCode({ session }) {
               {
                 timer > 0 ?
                   <QRCodeLogo
-                    value={QRCodeValue}
+                    value={auth || ''}
                     eyeRadius={14}
                     qrStyle={"squares"}
                     size={265}

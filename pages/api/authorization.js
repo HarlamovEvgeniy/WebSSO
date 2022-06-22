@@ -1,5 +1,6 @@
 import utils from './utils';
 import { getSession } from "./utils/session";
+import {btoa} from "next/dist/server/web/sandbox/polyfills";
 
 export default async function handler(req, res) {
   res.setHeader('Content-Type', 'application/json');
@@ -18,9 +19,10 @@ export default async function handler(req, res) {
       message: session.message || null,
       sessionToken: session.token || null
     }
+    const response = ('https://web-sso.vercel.app/?auth=' + btoa(JSON.stringify(QRCode))).toString();
 
     res.statusCode = 200;
-    res.send(QRCode);
+    res.send(response);
   } else {
     res.statusCode = 403;
     res.send('API Error');
