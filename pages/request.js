@@ -44,12 +44,10 @@ export default function Request(props) {
             Confirm
           </a>
         </Link>
-        <Link href="/">
-          <a className="btn btn--image btn--white mt-10">
-            <Image alt="" width={26} height={26} src={'/back.svg'}/>
-            Deny access and back
-          </a>
-        </Link>
+        <a href="https://test-authorization.vercel.app/" rel={'noreferrer'} className="btn btn--image btn--white mt-10">
+          <Image alt="" width={26} height={26} src={'/back.svg'}/>
+          Deny access and back
+        </a>
       </div>
     </div>
   )

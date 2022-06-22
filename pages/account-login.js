@@ -18,7 +18,7 @@ export default function AccountLogin() {
   const handleSignIn = (e) => {
     e.preventDefault();
 
-    if(form?.phone.toString().slice(-1) !== '_' && form?.phone) {
+    if(form?.phone.toString().slice(-1) !== '_' && form?.phone && form?.phone == '999-999-999') {
       setError(false)
       router.push('/request')
     } else {
