@@ -8,7 +8,6 @@ const clientSession = Redis.createClient({ legacyMode: true });
 const { libNode } = require('@tonclient/lib-node');
 const { initSettings } = require('everscale-did-sdk-radiance');
 const nextServer = next({ dev });
-const { parse } = require('url');
 const handle = nextServer.getRequestHandler();
 const _PORT = process.env.PORT || 5000;
 
