@@ -3,14 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "engines": {
-    "node": "14.x"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "client": "npm run build --prefix client",
-    "server": "nodemon index.js",
-    "start": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "node server.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js"
   },
   "repository": {
     "type": "git",
@@ -34,7 +32,15 @@
     "express": "^4.18.1",
     "express-session": "^1.17.3",
     "ioredis": "^5.1.0",
+    "next": "^12.1.6",
     "nodemon": "^2.0.18",
-    "redis": "^4.1.0"
+    "react-input-mask": "^2.0.4",
+    "react-loader-spinner": "^5.1.5",
+    "react-qrcode-logo": "^2.7.0",
+    "redis": "^4.1.0",
+    "url": "^0.11.0"
+  },
+  "devDependencies": {
+    "sass": "^1.53.0"
   }
 }
