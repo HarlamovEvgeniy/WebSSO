@@ -12,7 +12,7 @@ router.get('/authorization', cors(), async (req, res) => {
       req.session.token = req.sessionID
     } else {
       res.statusCode = 302;
-      res.json('No Query Endpoint & No Query Method');
+      return res.json('No Query Endpoint & No Query Method');
     }
 
     const QRCode = {
@@ -27,9 +27,10 @@ router.get('/authorization', cors(), async (req, res) => {
     }
 
     res.statusCode = 200;
-    res.json(response);
+    return res.json(response);
   } catch (error) { 
-    console.log(error);
+    res.statusCode = 500;
+    return res.json(error)
   } 
 })
 

@@ -5,23 +5,19 @@ import { useState, useEffect } from 'react';
 import { QRCode as QRCodeLogo } from 'react-qrcode-logo';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import { Grid } from  'react-loader-spinner';
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 
-export default function QRCode({ session }) {
+export default function QRCode() {
   const router = useRouter();
   const [loader, setLoader] = useState(true);
   const [timer, setTimer] = useState(299);
 
+  //Set Loader
   setTimeout(() => {
     setLoader(false);
   }, 500);
 
-  useEffect(() => {
-    if(session?.auth) {
-      router.push('/request');
-    }
-  }, []);
-
+  //Timer
   useEffect(() => {
     const i = setInterval(function (){
       if(timer > 0) {
@@ -137,24 +133,3 @@ export default function QRCode({ session }) {
     </>
   );
 }
-
-
-// export async function getServerSideProps(ctx) {
-//   try {
-//     if(ctx?.req && ctx?.res) {
-//       const session = await getSession(ctx?.req, ctx?.res);
-//       return {
-//         props: {
-//           session: session,
-//         }
-//       }
-
-//     } else {
-//       return false;
-//     }
-//   } catch (err) {
-//     console.log(err);
-//     return false;
-//   }
-// }
-
