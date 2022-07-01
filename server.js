@@ -11,7 +11,6 @@ const nextServer = next({ dev });
 const handle = nextServer.getRequestHandler();
 const _PORT = process.env.PORT || 5000;
 
-
 nextServer.prepare().then(() => {
   const app = express();
   app.use(express.json({ extended: true }));
