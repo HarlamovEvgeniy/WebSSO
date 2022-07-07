@@ -23,6 +23,7 @@
   "dependencies": {
     "@tonclient/core": "^1.30.0",
     "@tonclient/lib-node": "^1.30.0",
+    "@vercel/next": "^3.1.3",
     "concurrently": "^7.2.2",
     "connect-redis": "^6.1.3",
     "cors": "^2.8.5",
