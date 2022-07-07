@@ -33,8 +33,6 @@ nextServer.prepare().then(() => {
   app.use('/api', require('./routes/request.routes'));
   app.use('/api', require('./routes/response.routes'));
   app.get('*', (req, res) => {
-    RedisStorage.set(req.sessionID, req.session, function() {});
-    console.log(RedisStorage.all);
     return handle(req, res);
   });
 

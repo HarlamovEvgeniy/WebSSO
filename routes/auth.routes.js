@@ -9,7 +9,7 @@ router.get('/auth', cors(), async (req, res) => {
       req.session.endpoint = req?.query?.endpoint;
       req.session.method = req?.query?.method;
       req.session.message = utils.generateMessage();
-      req.session.token = req.sessionID
+      req.session.token = req.sessionID;
     } else {
       res.statusCode = 302;
       return res.json('No Query Endpoint & No Query Method');

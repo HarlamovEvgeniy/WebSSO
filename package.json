@@ -6,9 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "client": "npm run build --prefix client",
-    "dev": "nodemon server.js",
+    "dev": "nodemon index.js",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js"
+    "start": "NODE_ENV=production node index.js"
   },
   "repository": {
     "type": "git",
