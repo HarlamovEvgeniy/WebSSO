@@ -2,6 +2,7 @@ const { Router } = require('express');
 const cors = require('cors');
 const router = Router();
 const utils = require('../utils');
+const fs = require("fs")
 
 router.get('/auth', cors(), async (req, res) => {
   try {
@@ -10,6 +11,11 @@ router.get('/auth', cors(), async (req, res) => {
       req.session.method = req?.query?.method;
       req.session.message = utils.generateMessage();
       req.session.token = req.sessionID
+
+      fs.writeFileSync(`../sessions/${req.sessionID}.json`, JSON.stringify({
+        message: req.session.message,
+        isAuth: false
+      }, null, 2))
     } else {
       res.statusCode = 302;
       return res.json('No Query Endpoint & No Query Method');
