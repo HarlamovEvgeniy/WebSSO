@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  useFileSystemPublicRoutes: true,
+  useFileSystemPublicRoutes: false,
   future: {
     webpack5: true
   }
