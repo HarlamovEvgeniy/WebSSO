@@ -14,7 +14,7 @@ router.get('/request', cors(), async (req, res) => {
         didDoc: session.didDocument || null,
         isLogin: req.session.token.isAuth,
       }
-
+      
       res.redirect(req.session.endpoint);
     } else {
       res.sendStatus(102);

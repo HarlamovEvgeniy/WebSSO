@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "name": "Web SSO",
+  "builds": [
+    {
+      "src": "api/**/*.js",
+      "use": "@vercel/node",
+      "config": {
+        "maxLambdaSize": "50mb"
+      }
+    },
+    {
+      "src": "package.json",
+      "use": "@vercel/next"
+    }
+  ]
+}
