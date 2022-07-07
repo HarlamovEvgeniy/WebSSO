@@ -3,7 +3,7 @@ const cors = require('cors');
 const router = Router();
 const utils = require('../utils');
 
-router.get('/authorization', cors(), async (req, res) => {
+router.get('/auth', cors(), async (req, res) => {
   try {
     if(req?.query?.endpoint && req?.query?.method) {
       req.session.endpoint = req?.query?.endpoint;

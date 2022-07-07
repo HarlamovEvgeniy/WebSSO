@@ -24,6 +24,7 @@ nextServer.prepare().then(() => {
       secret: 'web-sso',
       saveUninitialized: true,
       resave: false,
+      cookie: { secure: true }
     })
   );
 
@@ -32,6 +33,8 @@ nextServer.prepare().then(() => {
   app.use('/api', require('./routes/request.routes'));
   app.use('/api', require('./routes/response.routes'));
   app.get('*', (req, res) => {
+    RedisStorage.set(req.sessionID, req.session, function() {});
+    console.log(RedisStorage.all);
     return handle(req, res);
   });
 
@@ -40,6 +43,7 @@ nextServer.prepare().then(() => {
     await clientSession.connect();
     initSettings("devNet", libNode);
   });
+  
 }).catch((exit) => {
   console.log(console.error(exit.stack));
   process.exit(1);

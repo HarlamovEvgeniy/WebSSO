@@ -12,7 +12,6 @@ router.get('/response', cors(), async (req, res) => {
         req.session.token.didDocument = req.body.didDocument;
         req.session.token.isAuth = true;
         res.sendStatus(200);
-        
       } else {
         res.sendStatus(401);
       }

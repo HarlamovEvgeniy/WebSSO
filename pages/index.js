@@ -82,7 +82,7 @@ export default function QRCode() {
               {
                 timer > 0 ?
                   <QRCodeLogo
-                    value={''}
+                    value={'eyJlbmRwb2ludCI6IlwiL3Jlc3BvbnNlXCIiLCJtZXRob2QiOiJcIlBPU1RcIiIsIm1lc3NhZ2UiOiJiMGY2NzJjZWE1MDIwN2VmMWExNGRhOGIiLCJzZXNzaW9uVG9rZW4iOiJaa1BIblhnZmVWSkVyZjlXQ1lTUTN3OHVrVDJKMXZqWiJ9'}
                     eyeRadius={14}
                     qrStyle={"squares"}
                     size={265}
