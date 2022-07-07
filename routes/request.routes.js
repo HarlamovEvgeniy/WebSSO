@@ -2,12 +2,16 @@ const { Router } = require('express');
 const cors = require('cors');
 const router = Router();
 const utils = require('../utils');
+const fs = require('fs')
 
 router.get('/request', cors(), async (req, res) => {
   try {
     if(req.sessionID) {
+      var session = JSON.parse(fs.readFileSync(`../sessions/${req.sessionID}.json`))
+
+
       const response = {
-        didDoc: req.session.token.didDocument,
+        didDoc: session.didDocument || null,
         isLogin: req.session.token.isAuth,
       }
       
