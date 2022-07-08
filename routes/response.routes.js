@@ -15,7 +15,7 @@ router.get('/response', cors(), async (req, res) => {
         session.didDocument = req.body.didDocument;
         session.isAuth = true;
 
-        fs.writeFileSync(`../sessions/${req.body.sessionToken}.json`, JSON.stringify(session, null, 2))
+        fs.writeFileSync(`./sessions/${req.body.sessionToken}.json`, JSON.stringify(session, null, 2))
         res.sendStatus(200);
       } else {
         res.sendStatus(401);
