@@ -24,7 +24,6 @@ nextServer.prepare().then(() => {
       secret: 'web-sso',
       saveUninitialized: true,
       resave: false,
-      cookie: { secure: true }
     })
   );
 
@@ -32,9 +31,8 @@ nextServer.prepare().then(() => {
   app.use('/api', require('./routes/auth.routes'));
   app.use('/api', require('./routes/request.routes'));
   app.use('/api', require('./routes/response.routes'));
-  app.get('/', (req, res) => {
-    app.render(req, res, "/request");
-    // return handle(req, res);
+  app.get('*', (req, res) => {
+    return handle(req, res);
   });
 
   app.listen(_PORT, async (req, res) => {
