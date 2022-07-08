@@ -2,7 +2,7 @@ const { Router } = require('express');
 const cors = require('cors');
 const router = Router();
 const utils = require('../utils');
-const fs = require("fs")
+const fs = require("fs");
 
 router.get('/auth', cors(), async (req, res) => {
   try {
@@ -13,7 +13,7 @@ router.get('/auth', cors(), async (req, res) => {
       req.session.token = req.sessionID;
 
       try {
-        fs.writeFileSync(`../sessions/${req.sessionID}.json`, JSON.stringify({
+        fs.writeFileSync(`./session/${req.sessionID}.json`, JSON.stringify({
           message: req.session.message,
           isAuth: false
         }, null, 2));
