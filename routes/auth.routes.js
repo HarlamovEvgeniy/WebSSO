@@ -33,8 +33,6 @@ router.get('/auth', cors(), async (req, res) => {
 
       res.statusCode = 200;
       return res.json(response);
-
-      
     } else {
       res.statusCode = 302;
       return res.json('No Query Endpoint & No Query Method');
