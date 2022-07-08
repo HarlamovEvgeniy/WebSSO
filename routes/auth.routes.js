@@ -31,14 +31,14 @@ router.get('/auth', cors(), async (req, res) => {
     }
 
     const response = {
-      url: ('https://web-sso.vercel.app/?auth=' + btoa(JSON.stringify(QRCode))).toString()
+      url: ('http://185.225.35.119:5000/?auth=' + btoa(JSON.stringify(QRCode))).toString()
     }
 
     res.statusCode = 200;
     return res.json(response);
   } catch (error) { 
-    res.statusCode = 500;
-    return res.json(error)
+    res.statusCode = 502;
+    return res.json(error);
   } 
 })
 
