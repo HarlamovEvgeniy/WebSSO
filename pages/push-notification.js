@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import {useEffect, useState} from "react";
 
@@ -38,7 +37,7 @@ export default function PushNotification() {
         </div>
         <div className="content__push-right">
           <div className="content__push--logo">
-            <Image alt="" width={"50px"} height="50px" src={"/LogoIcon.svg"}></Image>
+            <img alt="" width={"50px"} height="50px" src={"/LogoIcon.svg"}/>
           </div>
         </div>
       </div>
@@ -47,7 +46,7 @@ export default function PushNotification() {
         <Link href="/request">
           <a className="btn btn--image btn--white">
             No Defispace App
-            <Image alt="" width={20} height={20} src={'/information.svg'}/>
+            <img alt="" width={20} height={20} src={'/information.svg'}/>
           </a>
         </Link>
       </div>
@@ -56,7 +55,7 @@ export default function PushNotification() {
         <div className="markets__item">
           <a target={"_blank"} href="https://play.google.com/store/games?hl=ru&gl=US" rel="noreferrer">
             <div className="markets__item-image">
-              <Image alt="" width={"28"} height={"28"} src={"/google.svg"}></Image>
+              <img alt="" width={"28"} height={"28"} src={"/google.svg"}/>
             </div>
             <div className="markets__item-content">
               <span>Free download</span>
@@ -67,7 +66,7 @@ export default function PushNotification() {
         <div className="markets__item">
           <a target={"_blank"} href="https://www.apple.com/ru/app-store/" rel="noreferrer">
             <div className="markets__item-image">
-              <Image alt="" width={"28"} height={"28"} src={"/apple.svg"}></Image>
+              <img alt="" width={"28"} height={"28"} src={"/apple.svg"}/>
             </div>
             <div className="markets__item-content">
               <span>Free download</span>

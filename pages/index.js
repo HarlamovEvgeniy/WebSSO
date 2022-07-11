@@ -1,5 +1,4 @@
 import Checkbox from '../src/components/Checkbox';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { QRCode as QRCodeLogo } from 'react-qrcode-logo';
@@ -57,7 +56,7 @@ export default function QRCode() {
                 <div className="markets__item">
                   <a target={"_blank"} href="https://play.google.com/store/games?hl=ru&gl=US" rel="noreferrer">
                     <div className="markets__item-image">
-                      <Image alt="" width={"28"} height={"28"} src={"/google.svg"}></Image>
+                      <img alt="" width={"28"} height={"28"} src={"/google.svg"}/>
                     </div>
                     <div className="markets__item-content">
                       <span>Free download</span>
@@ -68,7 +67,7 @@ export default function QRCode() {
                 <div className="markets__item">
                   <a target={"_blank"} href="https://www.apple.com/ru/app-store/" rel="noreferrer">
                     <div className="markets__item-image">
-                      <Image alt="" width={"28"} height={"28"} src={"/apple.svg"}></Image>
+                      <img alt="" width={"28"} height={"28"} src={"/apple.svg"}/>
                     </div>
                     <div className="markets__item-content">
                       <span>Free download</span>
@@ -114,7 +113,7 @@ export default function QRCode() {
               <div className="content__footer-btn">
                 <Link href="/account-login">
                   <a className="btn btn--image btn--white">
-                    <Image alt="" width={26} height={26} src={'/view.svg'}/>
+                    <img alt="" width={26} height={26} src={'/view.svg'}/>
                     Login with account
                   </a>
                 </Link>

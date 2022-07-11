@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link'
 
 export const Header = () => {
@@ -8,7 +7,7 @@ export const Header = () => {
         <div className="header__wrapper">
           <Link href={'/'}>
             <a className="header__logo">
-              <Image alt="" src={"/Logo.svg"} width={180} height={32}/>
+              <img alt="" src={"/Logo.svg"} width={180} height={32}/>
             </a>
           </Link>
           <Link href={'/'}>

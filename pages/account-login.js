@@ -1,6 +1,5 @@
 import Checkbox from '../src/components/Checkbox';
 import Input from '../src/components/Input';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router'
 import { useState } from 'react';
@@ -44,7 +43,7 @@ export default function AccountLogin() {
           <a onClick={(e) => handleSignIn(e)}
              className='btn btn--image btn--orange mt-10'
           >
-            <Image alt="" width={28} height={28} src={'/sign-in.svg'}/>
+          <img alt="" width={28} height={28} src={'/sign-in.svg'}/>
             Sign In
           </a>
         </Link>
@@ -80,7 +79,7 @@ export default function AccountLogin() {
           <div className="content__footer-btn">
             <Link href="/" >
               <a className="btn btn--image btn--white">
-                <Image alt="" width={28} height={28} src={'/code.svg'}/>
+                <img alt="" width={28} height={28} src={'/code.svg'}/>
                 By QR-code
               </a>
             </Link>

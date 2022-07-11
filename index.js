@@ -9,7 +9,7 @@ const { libNode } = require('@tonclient/lib-node');
 const { initSettings } = require('everscale-did-sdk-radiance');
 const nextServer = next({ dev });
 const handle = nextServer.getRequestHandler();
-const _PORT = process.env.PORT || 80;
+const _PORT = process.env.PORT || 5000;
 
 nextServer.prepare().then(() => {
   const app = express();

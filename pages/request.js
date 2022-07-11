@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Request(props) {
@@ -32,7 +31,7 @@ export default function Request(props) {
         </div>
         <div className="content__request-right">
           <div className="content__request--logo">
-            <Image alt="" width={"82px"} height="82px" src={"/StartupLanding.svg"}></Image>
+            <img alt="" width={"82px"} height="82px" src={"/StartupLanding.svg"}/>
           </div>
         </div>
       </div>
@@ -40,12 +39,12 @@ export default function Request(props) {
       <div className="content__btns">
         <Link href="/sucess">
           <a className="btn btn--image btn--orange">
-            <Image alt="" width={26} height={26} src={'/send.svg'}/>
+            <img alt="" width={26} height={26} src={'/send.svg'}/>
             Confirm
           </a>
         </Link>
         <a href="https://test-authorization.vercel.app/" rel={'noreferrer'} className="btn btn--image btn--white mt-10">
-          <Image alt="" width={26} height={26} src={'/back.svg'}/>
+          <img alt="" width={26} height={26} src={'/back.svg'}/>
           Deny access and back
         </a>
       </div>
