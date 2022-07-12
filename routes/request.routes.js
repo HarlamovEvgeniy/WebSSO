@@ -7,10 +7,10 @@ const fs = require('fs')
 router.get('/request', cors(), async (req, res) => {
   try {
     if(req.sessionID) {
-      var session = JSON.parse(fs.readFileSync(`../sessions/${req.sessionID}.json`))
+      var session = JSON.parse(fs.readFileSync(`../session/${req.sessionID}.json`))
       const response = {
         didDoc: session.didDocument || null,
-        isLogin: req.session.token.isAuth,
+        isLogin: session.isAuth,
       }
       
       res.redirect(req.session.endpoint);

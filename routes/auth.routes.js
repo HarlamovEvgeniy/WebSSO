@@ -16,9 +16,13 @@ router.get('/auth', cors(), async (req, res) => {
       try {
         fs.writeFileSync(`./session/${req.sessionID}.json`, JSON.stringify({
           message: req.session.message,
-          isAuth: false
+          isAuth: false,
+          response: false
         }, null, 2));
-      } catch (err) { console.log('Session Error', err); }
+      } catch (error) {
+        res.sendStatus(500)
+        return res.json(error)
+      }
 
       const QRCode = {
         endpoint: req.session.endpoint || null,
