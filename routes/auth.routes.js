@@ -14,7 +14,7 @@ router.get('/auth', cors(), async (req, res) => {
       req.session.token = req.sessionID;
 
       try {
-        fs.writeFileSync(`./session/${req.sessionID}.json`, JSON.stringify({
+        fs.writeFileSync(`./sessions/${req.sessionID}.json`, JSON.stringify({
           message: req.session.message,
           isAuth: false,
           response: false
