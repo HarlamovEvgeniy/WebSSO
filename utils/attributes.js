@@ -11,6 +11,23 @@ module.exports = {
         } else {
             throw new TypeError(`Got ${typeof attribute} instead of string`)
         }
+    },
+
+    requireAttributes: (attributes) => {
+        try {
+            if(typeof attributes === "string") {
+                return requireAttribute(attributes)
+            } else if(Array.isArray(attributes)) {
+                for(var i = 0; i < attributes.length; i++) {
+                    requireAttribute(attributes[i])
+                }
+                return true
+            } else {
+                throw new TypeError("Incorrect data was transmitted")
+            }
+        } catch(error) {
+            return error
+        }
     }
 
 }

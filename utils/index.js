@@ -24,5 +24,6 @@ module.exports = {
     })
   },
 
-  requireAttribute: attributes.requireAttribute
+  requireAttribute: attributes.requireAttribute,
+  requireAttributes: attributes.requireAttributes
 }
