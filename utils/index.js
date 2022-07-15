@@ -1,5 +1,6 @@
 const { randomBytes } = require('crypto');
 const SDK = require('everscale-did-sdk-radiance');
+const attributes = require('./attributes')
 
 module.exports = {
   generateMessage: () => {
@@ -22,4 +23,6 @@ module.exports = {
       }
     })
   },
+
+  requireAttribute: attributes.requireAttribute
 }
