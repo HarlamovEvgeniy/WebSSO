@@ -2,20 +2,25 @@ const { Router } = require('express');
 const cors = require('cors');
 const router = Router();
 const utils = require('../utils');
-const fs = require("fs");
+const redis = require('redis')
+const client = redis.createClient({legacyMode: true})
 
-
-router.get('/requestQr', cors(), async (req, res) => {
+router.get('/api/request/mobile', cors(), async (req, res) => {
     try {
+        await client.connect()
         if(req.sessionID) {
-            var session = JSON.parse(fs.readFileSync(`../session/${req.sessionID}.json`))
-            if(session?.response) {
-                res.sendStatus(200)
+            if(req.session?.key) {
+                var data = JSON.parse(client.get(req.session.key))
+                if(data?.isMobile) {
+                    res.sendStatus(200)
+                } else {
+                    res.sendStatus(102)
+                }
             } else {
-                res.sendStatus(202)
+                res.sendStatus(401)
             }
         } else {
-            res.sendStatus(500)
+            res.sendStatus(401)
         }
     } catch(error) {
         res.statusCode = 500;

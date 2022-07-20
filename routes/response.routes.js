@@ -2,24 +2,30 @@ const { Router } = require('express');
 const cors = require('cors');
 const router = Router();
 const utils = require('../utils');
-const fs = require('fs')
-const session = require('express-session');
+const redis = require('redis')
+const client = redis.createClient({legacyMode: true})
 
-router.post('/response', cors(), async (req, res) => {
+router.post('/api/response/mobileAuth', cors(), async (req, res) => {
   try {
-    if(req.body?.didDocument && req.body?.parameter && req.body?.sessionToken) {
-      var session = JSON.parse(fs.readFileSync(`../session/${req.body.sessionToken}.json`))
-      const possibleUser = await utils.login(req.body.didDocument, session.message, req.body.parameter);
+    await client.connect()
+    if(req.body?.did && req.body?.parameter && req.body?.key) {
 
-      if(possibleUser) {
-        session.didDocument = req.body.didDocument;
-        session.isAuth = true;
+      var data = JSON.parse(await client.get(req.body.key))
 
-        fs.writeFileSync(`./session/${req.body.sessionToken}.json`, JSON.stringify(session, null, 2))
-        res.sendStatus(200);
+      var isAuth = await utils.login(req.body.did, data.message, req.body.parameter)
+
+      if(isAuth) {
+        if(req.body?.vp) {
+          
+        }
+        data.isAuth = isAuth
+        data.did = req.body.did
+        client.setEx(req.body.key, await client.ttl(req.body.key), JSON.stringify(data))
+        res.sendStatus(200)
       } else {
         res.sendStatus(401);
       }
+
     } else {
       res.sendStatus(400);
     }

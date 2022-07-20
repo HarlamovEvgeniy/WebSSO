@@ -21,6 +21,7 @@
     },
     "homepage": "https://github.com/HarlamovEvgeniy/WebSSO#readme",
     "dependencies": {
+        "@radianceteam/vc": "file:everscale-vc-sdk",
         "@tonclient/core": "^1.30.0",
         "@tonclient/lib-node": "^1.30.0",
         "btoa": "^1.2.1",

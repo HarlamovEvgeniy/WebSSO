@@ -2,33 +2,31 @@ const { Router } = require('express');
 const cors = require('cors');
 const router = Router();
 const utils = require('../utils');
-const fs = require("fs");
-const btoa = require('btoa')
+const redis = require('redis')
+const btoa = require('btoa');
+const client = redis.createClient({legacyMode: true})
 
-router.get('/auth', cors(), async (req, res) => {
+router.get('/api/url', cors(), async (req, res) => {
   try {
+    await client.connect()
     if(req?.query?.endpoint && req?.query?.method) {
-      req.session.endpoint = req?.query?.endpoint;
-      req.session.method = req?.query?.method;
-      req.session.message = utils.generateMessage();
-      req.session.token = req.sessionID;
-
-      try {
-        fs.writeFileSync(`./sessions/${req.sessionID}.json`, JSON.stringify({
-          message: req.session.message,
-          isAuth: false,
-          response: false
-        }, null, 2));
-      } catch (error) {
-        res.sendStatus(500)
-        return res.json(error)
+      req.session.endpoint = req.query.endpoint;
+      req.session.method = req.query.method;
+      req.session.key = utils.generateString(64)
+      var key = req.session.key
+      var data = {
+        message: utils.generateString(12)
       }
 
+      if(req?.query?.data?.attributes && utils.requireAttributes(req.query.data.attributes)) {
+        data.attributes = req.query.data.attributes
+      }
+
+      await client.setEx(key, 900, JSON.stringify(data))
+
       const QRCode = {
-        endpoint: req.session.endpoint || null,
-        method: req.session.method || null,
-        message: req.session.message || null,
-        sessionToken: req.session.token || null
+        endpoint: 'http://185.255.35.119:5000/api/requestData',
+        key: key
       }
 
       const response = {

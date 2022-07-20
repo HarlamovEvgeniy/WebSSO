@@ -3,8 +3,8 @@ const SDK = require('everscale-did-sdk-radiance');
 const attributes = require('./attributes')
 
 module.exports = {
-  generateMessage: () => {
-    return randomBytes(12).toString('hex');
+  generateString: (size) => {
+    return randomBytes(size).toString('hex');
   },
 
   login: (did, value, signature) => {

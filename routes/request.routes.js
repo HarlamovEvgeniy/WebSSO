@@ -4,22 +4,16 @@ const router = Router();
 const utils = require('../utils');
 const fs = require('fs')
 
-router.get('/request', cors(), async (req, res) => {
+router.get('/api/request/auth', cors(), async (req, res) => {
   try {
     if(req.sessionID) {
-      var session = JSON.parse(fs.readFileSync(`../session/${req.sessionID}.json`))
-      const response = {
-        didDoc: session.didDocument || null,
-        isLogin: session.isAuth,
-      }
       
-      res.redirect(req.session.endpoint);
+
+      
     } else {
-      res.sendStatus(102);
+      res.sendStatus(401);
     }
 
-    res.statusCode = 200;
-    res.json(response);
   } catch (error) { 
     console.log(error);
   } 
