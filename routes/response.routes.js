@@ -3,11 +3,10 @@ const cors = require('cors');
 const router = Router();
 const utils = require('../utils');
 const redis = require('redis')
-const client = redis.createClient({legacyMode: true})
+const { client } = require('../utils/storage/redis');
 
 router.post('/mobileAuth', cors(), async (req, res) => {
   try {
-    await client.connect()
     if(req.body?.did && req.body?.parameter && req.body?.key) {
       var data = JSON.parse(await client.get(req.body.key))
       var isAuth = await utils.login(req.body.did, data.message, req.body.parameter)

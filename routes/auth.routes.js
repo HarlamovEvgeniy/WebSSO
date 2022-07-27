@@ -2,18 +2,18 @@ const { Router } = require('express');
 const cors = require('cors');
 const router = Router();
 const utils = require('../utils');
-const redis = require('redis')
+const redis = require('redis');
 const btoa = require('btoa');
-const client = redis.createClient({legacyMode: true})
+const { client } = require('../utils/storage/redis');
 
 router.get('/url', cors(), async (req, res) => {
   try {
-    await client.connect()
     if(req?.query?.endpoint && req?.query?.method) {
       req.session.endpoint = req.query.endpoint;
       req.session.method = req.query.method;
-      req.session.key = await utils.generateString(64);
-      var key = req.session.key
+      req.session.key = await utils.generateString(32);
+
+      var key = req.session.key;
       var data = {
         message: utils.generateString(12)
       }
@@ -39,11 +39,11 @@ router.get('/url', cors(), async (req, res) => {
       res.statusCode = 302;
       return res.json('No Query Endpoint & No Query Method');
     }
-
   } catch (error) { 
     res.statusCode = 500;
     return res.json(error);
   } 
+  
 })
 
 module.exports = router;

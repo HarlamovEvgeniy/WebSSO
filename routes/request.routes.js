@@ -2,26 +2,27 @@ const { Router } = require('express');
 const cors = require('cors');
 const router = Router();
 const utils = require('../utils');
-const redis = require('redis')
 const fetch = require('node-fetch')
-const client = redis.createClient({legacyMode: true})
+const { client } = require('../utils/storage/redis');
 const btoa = require('btoa')
 
 
 router.get('/auth', cors(), async (req, res) => {
   try {
-    await client.connect()
     if(req?.session?.key) {
+      console.log(req?.session?.key);
       var data = JSON.parse(await client.get(req.session.key))
       if(data?.isAuth) {
         if(req.session.method.toUpperCase() == "POST") {
-          var ress = fetch(req.session.endpoint, {
-            method: "post",
+          var ress = await fetch(req.session.endpoint, {
+            method: "POST",
+            headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
               did: data.did
-            }),
-            headers: {'Content-Type': 'application/json'}
-          })
+            })
+          });
+
+          console.log(ress);
 
           if(ress.status == 200) {
             res.redirect(req.session.endpoint)

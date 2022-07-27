@@ -10,6 +10,7 @@ const { initSettings } = require('everscale-did-sdk-radiance');
 const nextServer = next({ dev });
 const handle = nextServer.getRequestHandler();
 const _PORT = process.env.PORT || 5000;
+const { initConnect } = require('./utils/storage/redis');
 
 nextServer.prepare().then(() => {
   const app = express();
@@ -40,6 +41,7 @@ nextServer.prepare().then(() => {
     console.log('Server Started on PORT: ' + _PORT);
     await clientSession.connect();
     initSettings("devNet", libNode);
+    await initConnect();
   });
   
 }).catch((exit) => {

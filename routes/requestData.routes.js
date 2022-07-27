@@ -3,11 +3,10 @@ const cors = require('cors');
 const router = Router();
 const utils = require('../utils');
 const redis = require('redis')
-const client = redis.createClient({legacyMode: true})
+const { client } = require('../utils/storage/redis');
 
 router.post("/authData", cors(), async (req, res) => {
     try {
-        await client.connect()
         if(req?.body?.key) {
             var key = req.body.key
             var data = JSON.parse(await client.get(key))

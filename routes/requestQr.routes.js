@@ -3,11 +3,11 @@ const cors = require('cors');
 const router = Router();
 const utils = require('../utils');
 const redis = require('redis')
-const client = redis.createClient({legacyMode: true})
+const { client } = require('../utils/storage/redis');
+
 
 router.get('/mobile', cors(), async (req, res) => {
     try {
-        await client.connect()
         if(req.sessionID) {
             if(req.session?.key) {
                 var data = JSON.parse(client.get(req.session.key))

@@ -1,3 +1,4 @@
+import React from "react";
 import Checkbox from '../src/components/Checkbox';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
@@ -26,6 +27,16 @@ export default function QRCode() {
 
     return () => clearInterval(i)
   }, [timer]);
+
+  
+  const getQRCode = () => {
+    console.log(router);
+  }
+
+  useEffect(() => {
+    getQRCode();
+  }, [])
+  
 
   return(
     <>
@@ -81,7 +92,7 @@ export default function QRCode() {
               {
                 timer > 0 ?
                   <QRCodeLogo
-                    value={'eyJlbmRwb2ludCI6IlwiL3Jlc3BvbnNlXCIiLCJtZXRob2QiOiJcIlBPU1RcIiIsIm1lc3NhZ2UiOiJiMGY2NzJjZWE1MDIwN2VmMWExNGRhOGIiLCJzZXNzaW9uVG9rZW4iOiJaa1BIblhnZmVWSkVyZjlXQ1lTUTN3OHVrVDJKMXZqWiJ9'}
+                    value={''}
                     eyeRadius={14}
                     qrStyle={"squares"}
                     size={265}
