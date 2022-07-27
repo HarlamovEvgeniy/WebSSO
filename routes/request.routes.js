@@ -6,7 +6,6 @@ const fetch = require('node-fetch')
 const { client } = require('../utils/storage/redis');
 const btoa = require('btoa')
 
-
 router.get('/auth', cors(), async (req, res) => {
   try {
     if(req?.session?.key) {
@@ -21,8 +20,6 @@ router.get('/auth', cors(), async (req, res) => {
               did: data.did
             })
           });
-
-          console.log(ress);
 
           if(ress.status == 200) {
             res.redirect(req.session.endpoint)

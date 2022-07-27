@@ -5,7 +5,7 @@ const utils = require('../utils');
 const redis = require('redis')
 const { client } = require('../utils/storage/redis');
 
-router.post("/authData", cors(), async (req, res) => {
+router.post("/data", cors(), async (req, res) => {
     try {
         if(req?.body?.key) {
             var key = req.body.key
