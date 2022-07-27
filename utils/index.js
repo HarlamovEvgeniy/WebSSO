@@ -4,7 +4,7 @@ const attributes = require('./attributes');
 const { TonClient } = require('@eversdk/core');
 
 module.exports = {
-  generateString: (size) => {
+  generateString: async (size) => {
     return randomBytes(size).toString('hex');
   },
 

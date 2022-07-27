@@ -12,7 +12,7 @@ router.get('/url', cors(), async (req, res) => {
     if(req?.query?.endpoint && req?.query?.method) {
       req.session.endpoint = req.query.endpoint;
       req.session.method = req.query.method;
-      req.session.key = utils.generateString(64)
+      req.session.key = await utils.generateString(64);
       var key = req.session.key
       var data = {
         message: utils.generateString(12)

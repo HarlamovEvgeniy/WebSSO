@@ -9,9 +9,7 @@ router.post('/mobileAuth', cors(), async (req, res) => {
   try {
     await client.connect()
     if(req.body?.did && req.body?.parameter && req.body?.key) {
-
       var data = JSON.parse(await client.get(req.body.key))
-
       var isAuth = await utils.login(req.body.did, data.message, req.body.parameter)
 
       if(isAuth) {
