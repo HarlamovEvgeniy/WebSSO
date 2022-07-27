@@ -5,7 +5,7 @@ const utils = require('../utils');
 const redis = require('redis')
 const client = redis.createClient({legacyMode: true})
 
-router.post('/response/mobileAuth', cors(), async (req, res) => {
+router.post('/mobileAuth', cors(), async (req, res) => {
   try {
     await client.connect()
     if(req.body?.did && req.body?.parameter && req.body?.key) {
