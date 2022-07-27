@@ -5,7 +5,6 @@ const utils = require('../utils');
 const redis = require('redis')
 const client = redis.createClient({legacyMode: true})
 
-
 router.post("/authData", cors(), async (req, res) => {
     try {
         await client.connect()
