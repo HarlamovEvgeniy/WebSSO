@@ -5,7 +5,7 @@ const utils = require('../utils');
 const redis = require('redis')
 const client = redis.createClient({legacyMode: true})
 
-router.get('/api/request/mobile', cors(), async (req, res) => {
+router.get('/request/mobile', cors(), async (req, res) => {
     try {
         await client.connect()
         if(req.sessionID) {

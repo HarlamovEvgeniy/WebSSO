@@ -6,7 +6,7 @@ const redis = require('redis')
 const btoa = require('btoa');
 const client = redis.createClient({legacyMode: true})
 
-router.get('/api/url', cors(), async (req, res) => {
+router.get('/url', cors(), async (req, res) => {
   try {
     await client.connect()
     if(req?.query?.endpoint && req?.query?.method) {

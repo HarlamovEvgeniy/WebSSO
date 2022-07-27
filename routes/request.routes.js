@@ -8,7 +8,7 @@ const client = redis.createClient({legacyMode: true})
 const btoa = require('btoa')
 
 
-router.get('/api/request/auth', cors(), async (req, res) => {
+router.get('/request/auth', cors(), async (req, res) => {
   try {
     await client.connect()
     if(req?.session?.key) {

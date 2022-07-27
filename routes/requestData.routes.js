@@ -6,7 +6,7 @@ const redis = require('redis')
 const client = redis.createClient({legacyMode: true})
 
 
-router.post("/api/request/authData", cors(), async (req, res) => {
+router.post("/request/authData", cors(), async (req, res) => {
     try {
         await client.connect()
         if(req?.body?.key) {
