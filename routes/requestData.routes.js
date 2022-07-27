@@ -8,10 +8,10 @@ const { client } = require('../utils/storage/redis');
 router.post("/data", cors(), async (req, res) => {
     try {
         if(req?.body?.key) {
-            var key = req.body.key
-            var data = JSON.parse(await client.get(key))
+            var key = req.body.key;
+            var data = JSON.parse(await client.get(key));
             data.isMobile = true;
-            await client.setEx(key, await client.ttl(key), JSON.stringify(data))
+            await client.setEx(key, await client.ttl(key), JSON.stringify(data));
 
             res.json({
                 endpoint: "http://185.225.35.119:5000/api/response/mobileAuth",
