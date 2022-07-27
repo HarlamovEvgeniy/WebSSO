@@ -5,7 +5,7 @@ const utils = require('../utils');
 const redis = require('redis')
 const { client } = require('../utils/storage/redis');
 
-router.post('/mobileAuth', cors(), async (req, res) => {
+router.post('/mobileauth', cors(), async (req, res) => {
   try {
     if(req.body?.did && req.body?.parameter && req.body?.key) {
       var data = JSON.parse(await client.get(req.body.key))
