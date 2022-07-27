@@ -18,7 +18,6 @@ nextServer.prepare().then(() => {
     session({
       store: new RedisStorage({
         url: process.env.REDIS_URL,
-        port: 5200,
         client: clientSession
       }),
       secret: 'web-sso',
