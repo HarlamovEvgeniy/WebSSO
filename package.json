@@ -21,6 +21,7 @@
     },
     "homepage": "https://github.com/HarlamovEvgeniy/WebSSO#readme",
     "dependencies": {
+        "@eversdk/core": "^1.36.1",
         "@radianceteam/vc": "file:everscale-vc-sdk",
         "@tonclient/core": "^1.30.0",
         "@tonclient/lib-node": "^1.30.0",
@@ -34,6 +35,7 @@
         "express-session": "^1.17.3",
         "fs": "^0.0.1-security",
         "next": "^12.1.6",
+        "node-fetch": "^2.6.7",
         "nodemon": "^2.0.19",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",

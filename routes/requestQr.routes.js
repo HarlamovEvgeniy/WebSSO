@@ -27,3 +27,5 @@ router.get('/api/request/mobile', cors(), async (req, res) => {
         return res.json(error);
     }
 })
+
+module.exports = router;

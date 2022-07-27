@@ -16,7 +16,7 @@ router.post("/api/request/authData", cors(), async (req, res) => {
             await client.setEx(key, await client.ttl(key), JSON.stringify(data))
 
             res.json({
-                endpoint: "",
+                endpoint: "http://185.225.35.119:5000/api/response/mobileAuth",
                 attributes: data?.attributes || null
             })
         } else {
@@ -27,3 +27,5 @@ router.post("/api/request/authData", cors(), async (req, res) => {
         res.json(error)
     }
 })
+
+module.exports = router;

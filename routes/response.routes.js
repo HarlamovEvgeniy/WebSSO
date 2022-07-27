@@ -30,7 +30,8 @@ router.post('/api/response/mobileAuth', cors(), async (req, res) => {
       res.sendStatus(400);
     }
   } catch (error) { 
-    console.log(error);
+    res.sendStatus(500)
+    res.json(error)
   } 
 })
 
