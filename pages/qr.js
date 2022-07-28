@@ -5,9 +5,9 @@ import { useState, useEffect } from 'react';
 import { QRCode as QRCodeLogo } from 'react-qrcode-logo';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import { Grid } from  'react-loader-spinner';
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 
-export default function QRCode({ message }) {
+export default function QRCode() {
   const router = useRouter();
   const [loader, setLoader] = useState(true);
   const [timer, setTimer] = useState(299);
@@ -28,29 +28,15 @@ export default function QRCode({ message }) {
     return () => clearInterval(i)
   }, [timer]);
 
-  useEffect(() => {
-    const checkIsScanned = async () => {
-      try {
-        const isScanned = await fetch('/api/request/mobile', {
-          method: 'GET',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json'
-          },
-          mode: "cors",
-        });
   
-        if(isScanned.status == 200) {
-          router.push({
-            pathname: '/request',
-            query: { message: message.auth }
-          })
-        }
-      } catch (err) {}
-    }
+  const getQRCode = () => {
+    console.log(router);
+  }
 
-    checkIsScanned();
-  })
+  useEffect(() => {
+    getQRCode();
+  }, [])
+  
 
   return(
     <>
@@ -106,7 +92,7 @@ export default function QRCode({ message }) {
               {
                 timer > 0 ?
                   <QRCodeLogo
-                    value={message?.auth ?? ''}
+                    value={''}
                     eyeRadius={14}
                     qrStyle={"squares"}
                     size={265}
@@ -156,12 +142,4 @@ export default function QRCode({ message }) {
     }
     </>
   );
-}
-
-export async function getServerSideProps(context) {
-  return {
-    props: {
-      message: context?.query ?? null
-    },
-  }
 }

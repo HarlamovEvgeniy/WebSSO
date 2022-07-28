@@ -18,10 +18,10 @@ export const Footer = () => {
         </nav>
 
         <div className="footer__link">
-          <Link href={"#"}>Consent to the processing of personal data</Link>
+          <Link href={"/"}>Consent to the processing of personal data</Link>
         </div>
         <div className="footer__link">
-          <Link href={"#"}>Information about partners</Link>
+          <Link href={"/"}>Information about partners</Link>
         </div>
 
         <div className="footer__logo">

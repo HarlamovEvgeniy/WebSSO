@@ -1,6 +1,23 @@
 import Link from 'next/link';
+import React from "react";
+import { useEffect } from 'react';
 
-export default function Request(props) {
+export default function Request() {
+  useEffect(() => {
+    const checkIsAccepted = async () => {
+      const isAccepted = await fetch('/api/request/auth', {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        mode: "cors",
+      });
+    }
+
+    checkIsAccepted();
+  })
+
   return(
     <div className="content">
       <div className="content__header">
