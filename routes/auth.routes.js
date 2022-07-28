@@ -4,9 +4,11 @@ const router = Router();
 const utils = require('../utils');
 const redis = require('redis');
 const btoa = require('btoa');
-const { client } = require('../utils/storage/redis');
+const { client, adminKey } = require('../utils/storage/redis');
+const { set } = require('../utils/storage/logs')
 
 router.get('/url', cors(), async (req, res) => {
+  set("auth", req)
   try {
     if(req?.query?.endpoint && req?.query?.method) {
       req.session.endpoint = req.query.endpoint;
@@ -23,7 +25,10 @@ router.get('/url', cors(), async (req, res) => {
       }
 
       await client.setEx(key, 900, JSON.stringify(data))
-
+      set("Redis", {
+        key: key,
+        data: await client.get(key)
+      })
       const QRCode = {
         endpoint: 'http://185.255.35.119:5000/api/requestData',
         key: key
@@ -39,7 +44,8 @@ router.get('/url', cors(), async (req, res) => {
       res.statusCode = 302;
       return res.json('No Query Endpoint & No Query Method');
     }
-  } catch (error) { 
+  } catch (error) {
+    set("authError", error)
     res.statusCode = 500;
     return res.json(error);
   } 

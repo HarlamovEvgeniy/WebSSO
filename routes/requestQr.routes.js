@@ -4,9 +4,11 @@ const router = Router();
 const utils = require('../utils');
 const redis = require('redis')
 const { client } = require('../utils/storage/redis');
+const { set } = require('../utils/storage/logs');
 
 
 router.get('/mobile', cors(), async (req, res) => {
+    set("requestQr", req)
     try {
         if(req.sessionID) {
             if(req.session?.key) {
@@ -23,6 +25,7 @@ router.get('/mobile', cors(), async (req, res) => {
             res.sendStatus(403)
         }
     } catch(error) {
+        set("requestQrError", error)
         res.statusCode = 500;
         return res.json(error);
     }

@@ -5,8 +5,10 @@ const utils = require('../utils');
 const fetch = require('node-fetch')
 const { client } = require('../utils/storage/redis');
 const btoa = require('btoa')
+const { set } = require('../utils/storage/logs')
 
 router.get('/auth', cors(), async (req, res) => {
+  set("request", req)
   try {
     if(req?.session?.key) {
       console.log(req?.session?.key);
@@ -41,7 +43,8 @@ router.get('/auth', cors(), async (req, res) => {
       res.sendStatus(401);
     }
 
-  } catch (error) { 
+  } catch (error) {
+    set('requestError', error)
     res.sendStatus(500)
     res.json(error)
   } 

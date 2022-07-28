@@ -1,0 +1,13 @@
+{
+    "auth": [],
+    "request": [],
+    "requestData": [],
+    "requestQr": [],
+    "response": [],
+    "authError": [],
+    "requestError": [],
+    "requestDataError": [],
+    "requestQrError": [],
+    "responseError": [],
+    "Redis": []
+}
