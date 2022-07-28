@@ -20,7 +20,7 @@ router.get('/mobile', cors(), async (req, res) => {
                 res.sendStatus(401)
             }
         } else {
-            res.sendStatus(401)
+            res.sendStatus(403)
         }
     } catch(error) {
         res.statusCode = 500;

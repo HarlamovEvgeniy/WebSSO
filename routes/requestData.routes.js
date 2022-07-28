@@ -21,7 +21,7 @@ router.post("/data", cors(), async (req, res) => {
             res.sendStatus(400)
         }
     } catch(error) {
-        res.sendStatus(400)
+        res.sendStatus(500)
         res.json(error)
     }
 })
