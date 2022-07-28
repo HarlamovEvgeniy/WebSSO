@@ -4,7 +4,6 @@ const router = Router();
 const utils = require('../utils');
 const redis = require('redis')
 const { client } = require('../utils/storage/redis');
-const { set } = require('../utils/storage/logs');
 
 router.post("/data", cors(), async (req, res) => {
     try {
@@ -17,7 +16,14 @@ router.post("/data", cors(), async (req, res) => {
                 }
                 var json = JSON.parse(data)
                 json.isMobile = true;
-                await client.setEx(key, await client.ttl(key), JSON.stringify(json));
+                client.ttl(key, async (err, data) => {
+                    if(err) {
+                        res.statusCode = 500
+                        return res.json(err)
+                    }
+                    await client.setEx(key, data, JSON.stringify(json));
+                })
+                
                 res.statusCode = 200
                 res.json({
                     endpoint: "http://185.225.35.119:5000/api/response/mobileAuth",

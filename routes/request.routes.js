@@ -5,7 +5,6 @@ const utils = require('../utils');
 const fetch = require('node-fetch')
 const { client } = require('../utils/storage/redis');
 const btoa = require('btoa')
-const { set } = require('../utils/storage/logs')
 
 router.get('/auth', cors(), async (req, res) => {
   try {

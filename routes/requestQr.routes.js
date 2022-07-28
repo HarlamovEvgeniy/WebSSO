@@ -4,7 +4,6 @@ const router = Router();
 const utils = require('../utils');
 const redis = require('redis')
 const { client } = require('../utils/storage/redis');
-const { set } = require('../utils/storage/logs');
 
 
 router.get('/mobile', cors(), async (req, res) => {

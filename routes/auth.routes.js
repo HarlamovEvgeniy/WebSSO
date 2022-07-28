@@ -5,7 +5,6 @@ const utils = require('../utils');
 const redis = require('redis');
 const btoa = require('btoa');
 const { client, adminKey } = require('../utils/storage/redis');
-const { set } = require('../utils/storage/logs')
 
 router.get('/url', cors(), async (req, res) => {
   try {
@@ -13,8 +12,9 @@ router.get('/url', cors(), async (req, res) => {
       req.session.endpoint = req.query.endpoint;
       req.session.method = req.query.method;
       req.session.key = await utils.generateString(32);
-
+      
       var key = req.session.key;
+      console.log(key)
       var data = {
         message: await utils.generateString(12)
       }
@@ -24,7 +24,6 @@ router.get('/url', cors(), async (req, res) => {
       }
 
       await client.setEx(key, 900, JSON.stringify(data))
-      var data3 = JSON.stringify(await client.get(key))
       const QRCode = {
         endpoint: 'http://185.255.35.119:5000/api/requestData',
         key: key

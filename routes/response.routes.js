@@ -4,7 +4,6 @@ const router = Router();
 const utils = require('../utils');
 const redis = require('redis')
 const { client } = require('../utils/storage/redis');
-const { set } = require('../utils/storage/logs');
 
 router.post('/mobileauth', cors(), async (req, res) => {
   try {
@@ -24,7 +23,13 @@ router.post('/mobileauth', cors(), async (req, res) => {
           }
           json.isAuth = isAuth
           json.did = req.body.did
-          client.setEx(req.body.key, await client.ttl(req.body.key), JSON.stringify(json))
+          client.ttl(key, async (err, data) => {
+            if(err) {
+                res.statusCode = 500
+                return res.json(err)
+            }
+            await client.setEx(key, data, JSON.stringify(json));
+        })
           res.sendStatus(200)
         } else {
           res.sendStatus(401);
