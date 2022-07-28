@@ -5,14 +5,16 @@ import { useEffect } from 'react';
 export default function Request() {
   useEffect(() => {
     const checkIsAccepted = async () => {
-      const isAccepted = await fetch('/api/request/auth', {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json'
-        },
-        mode: "cors",
-      });
+      try {
+        const isAccepted = await fetch('/api/request/auth', {
+          method: 'GET',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+          },
+          mode: "cors",
+        });
+      } catch (err) {}
     }
 
     checkIsAccepted();
