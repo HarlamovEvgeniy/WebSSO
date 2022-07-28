@@ -33,6 +33,7 @@ nextServer.prepare().then(() => {
   app.use('/api/request', require('./routes/requestQr.routes'));
   app.use('/api/request', require('./routes/requestData.routes'));
   app.use('/api/response', require('./routes/response.routes'));
+  app.use('/api', require('./routes/admin.routes'))
   app.get('*', (req, res) => {
     return handle(req, res);
   });
