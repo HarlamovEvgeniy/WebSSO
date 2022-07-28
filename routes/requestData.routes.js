@@ -7,26 +7,27 @@ const { client } = require('../utils/storage/redis');
 const { set } = require('../utils/storage/logs');
 
 router.post("/data", cors(), async (req, res) => {
-    set("requestData", req)
     try {
         if(req?.body?.key) {
             var key = req.body.key;
-            var data = JSON.parse(await client.get(key));
-            data.isMobile = true;
-            await client.setEx(key, await client.ttl(key), JSON.stringify(data));
-            set("Redis", {
-                key: key,
-                data: await client.get(key)
-            })
-            res.json({
-                endpoint: "http://185.225.35.119:5000/api/response/mobileAuth",
-                attributes: data?.attributes || null
+            await client.get(key, async (err, data) => {
+                if(err) {
+                    res.statusCode = 500
+                    return res.json(err)
+                }
+                var json = JSON.parse(data)
+                json.isMobile = true;
+                await client.setEx(key, await client.ttl(key), JSON.stringify(json));
+                res.statusCode = 200
+                res.json({
+                    endpoint: "http://185.225.35.119:5000/api/response/mobileAuth",
+                    attributes: data?.attributes || null
+                })
             })
         } else {
             res.sendStatus(400)
         }
     } catch(error) {
-        set("requestDataError", error)
         res.sendStatus(500)
         res.json(error)
     }

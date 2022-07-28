@@ -7,33 +7,35 @@ const { client } = require('../utils/storage/redis');
 const { set } = require('../utils/storage/logs');
 
 router.post('/mobileauth', cors(), async (req, res) => {
-  set("response", req)
   try {
+    // await set("response", req)
     if(req.body?.did && req.body?.parameter && req.body?.key) {
-      var data = JSON.parse(await client.get(req.body.key))
-      var isAuth = await utils.login(req.body.did, data.message, req.body.parameter)
-
-      if(isAuth) {
-        if(req.body?.vp) {
-          
+      client.get(req.body.key, async (err, data) => {
+        if(err) {
+          res.statusCode = 500
+          return res.json(err)
         }
-        data.isAuth = isAuth
-        data.did = req.body.did
-        client.setEx(req.body.key, await client.ttl(req.body.key), JSON.stringify(data))
-        set("Redis", {
-          key: req.body.key,
-          data: await client.get(req.body.key)
+        var json = JSON.parse(data)
+        var isAuth = await utils.login(req.body.did, json.message, req.body.parameter)
+
+        if(isAuth) {
+          if(req.body?.vp) {
+            
+          }
+          json.isAuth = isAuth
+          json.did = req.body.did
+          client.setEx(req.body.key, await client.ttl(req.body.key), JSON.stringify(json))
+          res.sendStatus(200)
+        } else {
+          res.sendStatus(401);
+        }
         })
-        res.sendStatus(200)
-      } else {
-        res.sendStatus(401);
-      }
+      
 
     } else {
       res.sendStatus(400);
     }
-  } catch (error) { 
-    set("responseError", error)
+  } catch (error) {
     res.sendStatus(500)
     res.json(error)
   } 

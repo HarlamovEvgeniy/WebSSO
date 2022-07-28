@@ -8,7 +8,6 @@ const { client, adminKey } = require('../utils/storage/redis');
 const { set } = require('../utils/storage/logs')
 
 router.get('/url', cors(), async (req, res) => {
-  set("auth", req)
   try {
     if(req?.query?.endpoint && req?.query?.method) {
       req.session.endpoint = req.query.endpoint;
@@ -17,7 +16,7 @@ router.get('/url', cors(), async (req, res) => {
 
       var key = req.session.key;
       var data = {
-        message: utils.generateString(12)
+        message: await utils.generateString(12)
       }
 
       if(req?.query?.data?.attributes && utils.requireAttributes(req.query.data.attributes)) {
@@ -25,10 +24,7 @@ router.get('/url', cors(), async (req, res) => {
       }
 
       await client.setEx(key, 900, JSON.stringify(data))
-      set("Redis", {
-        key: key,
-        data: await client.get(key)
-      })
+      var data3 = JSON.stringify(await client.get(key))
       const QRCode = {
         endpoint: 'http://185.255.35.119:5000/api/requestData',
         key: key
@@ -45,7 +41,6 @@ router.get('/url', cors(), async (req, res) => {
       return res.json('No Query Endpoint & No Query Method');
     }
   } catch (error) {
-    set("authError", error)
     res.statusCode = 500;
     return res.json(error);
   } 

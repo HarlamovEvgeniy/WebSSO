@@ -8,43 +8,48 @@ const btoa = require('btoa')
 const { set } = require('../utils/storage/logs')
 
 router.get('/auth', cors(), async (req, res) => {
-  set("request", req)
   try {
+    // await set("request", req)
     if(req?.session?.key) {
-      console.log(req?.session?.key);
-      var data = JSON.parse(await client.get(req.session.key))
-      if(data?.isAuth) {
-        if(req.session.method.toUpperCase() == "POST") {
-          var ress = await fetch(req.session.endpoint, {
-            method: "POST",
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-              did: data.did
-            })
-          });
-
-          if(ress.status == 200) {
-            res.redirect(req.session.endpoint)
-          } else {
-            res.sendStatus(502)
-          }
-        } else if(req.session.method.toUpperCase() == "GET") {
-          var url = req.session.endpoint + "?data=" + btoa(JSON.stringify({
-            did: data.did
-          })).toString()
-          res.redirect(url)
-        } else {
-          res.sendStatus(501)
+      client.get(req.session.key, async (err, data) => {
+        if(err) {
+          res.statusCode = 500
+          return res.json(err)
         }
-      } else {
-        res.sendStatus(401)
-      }
+        var json = JSON.parse(data)
+        if(json?.isAuth) {
+          if(req.session.method.toUpperCase() == "POST") {
+            var ress = await fetch(req.session.endpoint, {
+              method: "POST",
+              headers: {'Content-Type': 'application/json'},
+              body: JSON.stringify({
+                did: json.did
+              })
+            });
+  
+            if(ress.status == 200) {
+              res.redirect(req.session.endpoint)
+            } else {
+              res.sendStatus(502)
+            }
+          } else if(req.session.method.toUpperCase() == "GET") {
+            var url = req.session.endpoint + "?data=" + btoa(JSON.stringify({
+              did: json.did
+            })).toString()
+            res.redirect(url)
+          } else {
+            res.sendStatus(501)
+          }
+        } else {
+          res.sendStatus(401)
+        }
+      })
     } else {
       res.sendStatus(401);
     }
 
   } catch (error) {
-    set('requestError', error)
+    await set('requestError', error)
     res.sendStatus(500)
     res.json(error)
   } 

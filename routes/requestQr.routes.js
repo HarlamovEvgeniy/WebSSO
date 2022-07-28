@@ -8,16 +8,22 @@ const { set } = require('../utils/storage/logs');
 
 
 router.get('/mobile', cors(), async (req, res) => {
-    set("requestQr", req)
     try {
+        // await set("requestQr", req)
         if(req.sessionID) {
             if(req.session?.key) {
-                var data = JSON.parse(client.get(req.session.key))
-                if(data?.isMobile) {
-                    res.sendStatus(200)
-                } else {
-                    res.sendStatus(102)
-                }
+                client.get(req.session.key, async (err, data) => {
+                    if(err) {
+                        res.statusCode = 500
+                        return res.json(err)
+                    }
+                    var json = JSON.parse(data)
+                    if(json?.isMobile) {
+                        res.sendStatus(200)
+                    } else {
+                        res.sendStatus(102)
+                    }
+                })
             } else {
                 res.sendStatus(401)
             }
@@ -25,7 +31,6 @@ router.get('/mobile', cors(), async (req, res) => {
             res.sendStatus(403)
         }
     } catch(error) {
-        set("requestQrError", error)
         res.statusCode = 500;
         return res.json(error);
     }
