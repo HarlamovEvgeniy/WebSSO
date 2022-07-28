@@ -19,3 +19,5 @@ router.get('/admin', cors(), async (req, res) => {
         res.json(error)
     }
 })
+
+module.exports = router
