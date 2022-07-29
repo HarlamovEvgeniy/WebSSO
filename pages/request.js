@@ -38,9 +38,8 @@ export default function Request() {
 
           <div className="list mt-20 mb-20">
             <span>List of requested data</span>
-            <p>FIO, Did Document</p>
+            <p>Did Document</p>
           </div>
-
 
           <div className="notice mb-20">
             The application will not have full access to your data, we will return only the answers to their questions

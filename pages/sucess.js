@@ -18,7 +18,7 @@ export default function Sucess() {
 
       <div className="list mt-20 mb-20">
         <span>List of requested data</span>
-        <p>FIO, Did Document</p>
+        <p>Did Document</p>
       </div>
 
       <div className="information">
@@ -27,7 +27,7 @@ export default function Sucess() {
       </div>
 
       <div className="content__btns">
-        <a onClick={(e) => { handleButton(e) }} href="https://test-authorization.vercel.app/" rel={'noreferrer'} className="btn btn-- btn--white mt-10">
+        <a onClick={(e) => { handleButton(e) }} href="https://test-authorization.vercel.app/" rel={'noreferrer'} className="btn btn--image btn--white mt-10">
           <img alt="" width={26} height={26} src={'/back.svg'}/>
           Close and back
         </a>

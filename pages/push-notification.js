@@ -12,7 +12,24 @@ export default function PushNotification() {
     }, 1000)
 
     return () => clearInterval(i)
-  }, [timer])
+  }, [timer]);
+
+  useEffect(() => {
+    const checkIsAccepted = async () => {
+      try {
+        const isAccepted = await fetch('/api/request/auth', {
+          method: 'GET',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+          },
+          mode: "cors",
+        });
+      } catch (err) {}
+    }
+
+    checkIsAccepted();
+  });
 
   return(
     <div className="content">

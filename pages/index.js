@@ -42,7 +42,7 @@ export default function QRCode({ message }) {
         var body = await isScanned.json()
         if(body?.isMobile) {
           router.push({
-            pathname: '/request',
+            pathname: '/push-notification',
             query: { message: message.auth }
           })
         }
