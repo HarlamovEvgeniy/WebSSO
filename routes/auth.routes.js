@@ -29,12 +29,12 @@ router.get('/url', cors(), async (req, res) => {
 
       await client.setEx(key, 900, JSON.stringify(data))
       const QRCode = {
-        endpoint: 'http://127.0.0.1:5000/api/requestData',
+        endpoint: 'http://185.225.35.119:5000/api/requestData', 
         key: key
       }
 
       const response = {
-        url: ('http://127.0.0.1:5000/?auth=' + btoa(JSON.stringify(QRCode))).toString()
+        url: ('http://185.225.35.119:5000/?auth=' + btoa(JSON.stringify(QRCode))).toString()
       }
 
       res.statusCode = 200;

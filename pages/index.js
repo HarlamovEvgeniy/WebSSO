@@ -39,7 +39,8 @@ export default function QRCode({ message }) {
           },
           mode: "cors",
         });
-        if(isScanned.status == 200) {
+        var body = await isScanned.json()
+        if(body?.isMobile) {
           router.push({
             pathname: '/request',
             query: { message: message.auth }
