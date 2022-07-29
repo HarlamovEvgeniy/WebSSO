@@ -8,7 +8,6 @@ const btoa = require('btoa')
 
 router.get('/auth', cors(), async (req, res) => {
   try {
-    // await set("request", req)
     if(req?.session?.key) {
       client.get(req.session.key, async (err, data) => {
         if(err) {

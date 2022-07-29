@@ -7,7 +7,6 @@ const { client } = require('../utils/storage/redis');
 
 router.post('/mobileauth', cors(), async (req, res) => {
   try {
-    // await set("response", req)
     if(req.body?.did && req.body?.parameter && req.body?.key) {
       client.get(req.body.key, async (err, data) => {
         if(err) {

@@ -39,7 +39,6 @@ export default function QRCode({ message }) {
           },
           mode: "cors",
         });
-  
         if(isScanned.status == 200) {
           router.push({
             pathname: '/request',

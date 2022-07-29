@@ -6,15 +6,19 @@ const redis = require('redis');
 const btoa = require('btoa');
 const { client, adminKey } = require('../utils/storage/redis');
 
+//router для создания запроса на авторизацию
 router.get('/url', cors(), async (req, res) => {
+  console.log(req.sessionID)
   try {
     if(req?.query?.endpoint && req?.query?.method) {
+      
       req.session.endpoint = req.query.endpoint;
       req.session.method = req.query.method;
       req.session.key = await utils.generateString(32);
+      console.log(req.session.endpoint)
+      console.log(req.session.key)
       
       var key = req.session.key;
-      console.log(key)
       var data = {
         message: await utils.generateString(12)
       }
@@ -25,12 +29,12 @@ router.get('/url', cors(), async (req, res) => {
 
       await client.setEx(key, 900, JSON.stringify(data))
       const QRCode = {
-        endpoint: 'http://185.255.35.119:5000/api/requestData',
+        endpoint: 'http://127.0.0.1:5000/api/requestData',
         key: key
       }
 
       const response = {
-        url: ('http://185.225.35.119:5000/?auth=' + btoa(JSON.stringify(QRCode))).toString()
+        url: ('http://127.0.0.1:5000/?auth=' + btoa(JSON.stringify(QRCode))).toString()
       }
 
       res.statusCode = 200;
