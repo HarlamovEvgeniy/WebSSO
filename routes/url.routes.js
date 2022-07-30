@@ -5,8 +5,8 @@ const utils = require('../utils');
 const redis = require('redis');
 const btoa = require('btoa');
 const { client, adminKey } = require('../utils/storage/redis');
+const { _HOST } = require('../env-config');
 
-//router для создания запроса на авторизацию
 router.get('/url', cors(), async (req, res) => {
   console.log(req.sessionID)
   try {
@@ -29,12 +29,12 @@ router.get('/url', cors(), async (req, res) => {
 
       await client.setEx(key, 900, JSON.stringify(data))
       const QRCode = {
-        endpoint: 'http://185.225.35.119:5000/api/requestData', 
+        endpoint: _HOST + '/api/requestData', 
         key: key
       }
 
       const response = {
-        url: ('http://185.225.35.119:5000/?auth=' + btoa(JSON.stringify(QRCode))).toString()
+        url: (_HOST + '/?auth=' + btoa(JSON.stringify(QRCode))).toString()
       }
 
       res.statusCode = 200;

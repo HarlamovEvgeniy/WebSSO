@@ -4,6 +4,7 @@ const router = Router();
 const utils = require('../utils');
 const redis = require('redis')
 const { client } = require('../utils/storage/redis');
+const { _HOST } = require('../env-config');
 
 router.post("/data", cors(), async (req, res) => {
     try {
@@ -26,7 +27,7 @@ router.post("/data", cors(), async (req, res) => {
                 
                 res.statusCode = 200
                 res.json({
-                    endpoint: "http://185.225.35.119:5000/api/response/mobileAuth",
+                    endpoint: _HOST + '/api/response/mobileAuth',
                     attributes: data?.attributes || null
                 })
             })

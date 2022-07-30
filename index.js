@@ -9,7 +9,7 @@ const { libNode } = require('@tonclient/lib-node');
 const { initSettings } = require('everscale-did-sdk-radiance');
 const nextServer = next({ dev });
 const handle = nextServer.getRequestHandler();
-const _PORT = process.env.PORT || 5000;
+const { _PORT, _HOST} = require('./env-config');
 const { initConnect } = require('./utils/storage/redis');
 
 nextServer.prepare().then(() => {
@@ -28,7 +28,7 @@ nextServer.prepare().then(() => {
   );
 
   //Routes
-  app.use('/api', require('./routes/auth.routes'));
+  app.use('/api', require('./routes/url.routes'));
   app.use('/api/request', require('./routes/request.routes'));
   app.use('/api/request', require('./routes/requestQr.routes'));
   app.use('/api/request', require('./routes/requestData.routes'));
