@@ -27,19 +27,6 @@ nextServer.prepare().then(() => {
     })
   );
 
-  // if (!dev) {
-  //   app.use(function(req, res, next) {
-  //     var proto = req.headers["x-forwarded-proto"];
-  //     if (proto === "https") {
-  //       res.set({
-  //         'Strict-Transport-Security': 'max-age=31557600' // one-year
-  //       });
-  //       return next();
-  //     }
-  //     res.redirect("https://" + req.headers.host + req.url);
-  //   });
-  // }
-
   //Routes
   app.use('/api', require('./routes/url.routes'));
   app.use('/api/request', require('./routes/request.routes'));
