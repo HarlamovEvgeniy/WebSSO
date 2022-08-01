@@ -34,6 +34,7 @@ router.get('/auth', cors(), async (req, res) => {
             var url = req.session.endpoint + "?data=" + btoa(JSON.stringify({
               did: json.did
             })).toString()
+            console.log("URL: " + url)
             res.redirect(url)
           } else {
             res.sendStatus(501)
