@@ -4,7 +4,7 @@ const session = require('express-session');
 const RedisStorage = require('connect-redis')(session);
 const Redis = require('redis');
 const clientSession = Redis.createClient({ legacyMode: true });
-const { libNode } = require('@tonclient/lib-node');
+const { libNode } = require('@eversdk/lib-node');
 const { initSettings } = require('everscale-did-sdk-radiance');
 const dev = process.env.NODE_ENV !== 'production';
 const nextServer = next({ dev });
