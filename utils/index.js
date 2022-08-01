@@ -2,6 +2,9 @@ const { randomBytes } = require('crypto');
 const SDK = require('everscale-did-sdk-radiance');
 const attributes = require('./attributes');
 const { TonClient } = require('@eversdk/core');
+const { libNode } = require("@eversdk/lib-node")
+
+TonClient.useBinaryLibrary(libNode)
 
 module.exports = {
   generateString: async (size) => {
