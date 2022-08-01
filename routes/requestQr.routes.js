@@ -7,6 +7,7 @@ const { client } = require('../utils/storage/redis');
 
 
 router.get('/mobile', cors(), async (req, res) => {
+    console.log('Mobile Session ID', req.sessionID);
     try {
         if(req.session?.key) {
             client.get(req.session.key, async (err, data) => {
