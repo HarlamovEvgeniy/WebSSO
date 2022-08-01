@@ -1,21 +1,22 @@
-import Link from 'next/link';
 import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 
-export default function Sucess(props) {
-  setTimeout(() => {
-    window.close()
-  }, 3000);
-
+export default function Sucess() {
+  const router = useRouter();
   const handleButton = (e) => {
     e.preventDefault();
+    redirect();
+  }
+
+  const redirect = () => {
+    window.open(router?.query?.url, '_self');
   }
 
   useEffect(() => {
-    console.log(props.router.query);
-    // setTimeout(() => {
-    //   window.open(props.router.query.url, '_self');
-    // }, 3000);
-  }, [])
+    setTimeout(() => {
+      redirect();
+    }, 3000);
+  })
 
   return(
     <div className="content">
@@ -35,7 +36,7 @@ export default function Sucess(props) {
       </div>
 
       <div className="content__btns">
-        <a onClick={(e) => { handleButton(e) }} href="https://test-authorization.vercel.app/" rel={'noreferrer'} className="btn btn--image btn--white mt-10">
+        <a onClick={(e) => { handleButton(e) }} rel={'noreferrer'} className="btn btn--image btn--white mt-10">
           <img alt="" width={26} height={26} src={'/back.svg'}/>
           Close and back
         </a>
