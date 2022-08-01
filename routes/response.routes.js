@@ -7,15 +7,17 @@ const { client } = require('../utils/storage/redis');
 
 router.post('/mobileauth', cors(), async (req, res) => {
   try {
-    console.log("BODY: " + req.body)
     if(req.body?.did && req.body?.parameter && req.body?.key) {
+      console.log("key: " + req.body.key)
+      console.log("key: " + req.body.parameter)
+      console.log("key: " + req.body.did)
       client.get(req.body.key, async (err, data) => {
         if(err) {
           res.statusCode = 500
           return res.json(err)
         }
         var json = JSON.parse(data)
-        console.log("Redis-Data: " + json)
+        console.log("Redis-Data: " + json.message)
         var isAuth = await utils.login(req.body.did, json.message, req.body.parameter)
 
         if(isAuth) {
