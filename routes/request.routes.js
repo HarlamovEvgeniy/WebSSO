@@ -47,7 +47,10 @@ router.get('/auth', cors(), async (req, res) => {
             res.sendStatus(501)
           }
         } else {
-          res.sendStatus(401)
+          res.sendStatus(102)
+          res.json({
+            isAuth: false
+          })
         }
       })
     } else {
