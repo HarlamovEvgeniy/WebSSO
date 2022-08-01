@@ -28,7 +28,8 @@ router.post("/data", cors(), async (req, res) => {
                 res.statusCode = 200
                 res.json({
                     endpoint: _HOST + '/api/response/mobileAuth',
-                    attributes: data?.attributes || null
+                    message: json?.message || null,
+                    attributes: json?.attributes || null
                 })
             })
         } else {
