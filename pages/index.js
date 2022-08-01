@@ -7,7 +7,8 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import { Grid } from  'react-loader-spinner';
 import { useRouter } from 'next/router';
 
-export default function QRCode({ message }) {
+export default function QRCode({ message, sessionID }) {
+  console.log('Session ID Index: ', sessionID);
   const router = useRouter();
   const [loader, setLoader] = useState(true);
   const [timer, setTimer] = useState(299);
@@ -159,8 +160,11 @@ export default function QRCode({ message }) {
 }
 
 export async function getServerSideProps(context) {
+  
+
   return {
     props: {
+      sessionID: context?.req?.sessionID ?? null,
       message: context?.query ?? null
     },
   }

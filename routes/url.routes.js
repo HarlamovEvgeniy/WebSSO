@@ -5,7 +5,7 @@ const utils = require('../utils');
 const redis = require('redis');
 const btoa = require('btoa');
 const { client, adminKey } = require('../utils/storage/redis');
-const { _HOST } = require('../env-config');
+const { _HOST, _PORT } = require('../env-config');
 
 router.get('/url', cors(), async (req, res) => {
   console.log(req.sessionID)
@@ -15,8 +15,10 @@ router.get('/url', cors(), async (req, res) => {
       req.session.endpoint = req.query.endpoint;
       req.session.method = req.query.method;
       req.session.key = await utils.generateString(32);
-      console.log(req.session.endpoint)
-      console.log(req.session.key)
+      console.log(req.session.endpoint);
+      console.log(req.session.key);
+
+      console.log('Session ID URL: ', req.sessionID);
       
       var key = req.session.key;
       var data = {
@@ -34,11 +36,13 @@ router.get('/url', cors(), async (req, res) => {
       }
 
       const response = {
-        url: (_HOST + '/?auth=' + btoa(JSON.stringify(QRCode))).toString()
+        url: (_HOST + ':' + _PORT + '/?auth=' + btoa(JSON.stringify(QRCode))).toString()
       }
 
-      res.statusCode = 200;
-      return res.json(response);
+
+      res.redirect(response.url);
+      // res.statusCode = 200;
+      // return res.json(response);
     } else {
       res.statusCode = 302;
       return res.json('No Query Endpoint & No Query Method');
