@@ -19,7 +19,7 @@ router.post('/mobileauth', cors(), async (req, res) => {
         var json = JSON.parse(data)
         console.log("Redis-Data: " + json.message)
         var isAuth = await utils.login(req.body.did, json.message, req.body.parameter)
-
+        console.log("isAuth: " + isAuth)
         if(isAuth) {
           if(req.body?.vp) {
             
