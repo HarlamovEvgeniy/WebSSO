@@ -36,7 +36,7 @@ router.get('/url', cors(), async (req, res) => {
       }
 
       const response = {
-        url: (_HOST + ':' + _PORT + '/?auth=' + btoa(JSON.stringify(QRCode))).toString()
+        url: (_HOST + '/?auth=' + btoa(JSON.stringify(QRCode))).toString()
       }
 
 
