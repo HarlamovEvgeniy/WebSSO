@@ -4,14 +4,13 @@ const attributes = require('./attributes');
 const { TonClient } = require('@eversdk/core');
 const { libNode } = require("@eversdk/lib-node")
 
-TonClient.useBinaryLibrary(libNode)
-
 module.exports = {
   generateString: async (size) => {
     return randomBytes(size).toString('hex');
   },
 
   login: (did, value, signature) => {
+    TonClient.useBinaryLibrary(libNode)
     return new Promise(async (resolve, reject) => {
       try {
         let document = await SDK.resolveDIDDocument(did);
