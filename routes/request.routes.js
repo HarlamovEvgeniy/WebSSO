@@ -35,7 +35,13 @@ router.get('/auth', cors(), async (req, res) => {
               did: json.did
             })).toString()
             console.log("URL: " + url)
-            res.redirect(url)
+            res.setHeader("Access-Control-Allow-Origin", "*");
+            res.setHeader("Access-Control-Allow-Credentials", "true");
+            res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+            res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
+            res.json({
+              url: url
+            })
           } else {
             res.sendStatus(501)
           }
