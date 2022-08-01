@@ -8,6 +8,7 @@ const { _HOST } = require('../env-config');
 
 router.post("/data", cors(), async (req, res) => {
     try {
+        console.log("requestData-key" + req.body?.key)
         if(req?.body?.key) {
             var key = req.body.key;
             await client.get(key, async (err, data) => {
