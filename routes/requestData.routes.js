@@ -27,7 +27,7 @@ router.post("/data", cors(), async (req, res) => {
                 
                 res.statusCode = 200
                 res.json({
-                    endpoint: _HOST + '/api/response/mobileAuth',
+                    endpoint: _HOST + 'api/response/mobileAuth',
                     message: json?.message || null,
                     attributes: json?.attributes || null
                 })
