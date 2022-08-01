@@ -9,8 +9,8 @@ router.post('/mobileauth', cors(), async (req, res) => {
   try {
     if(req.body?.did && req.body?.parameter && req.body?.key) {
       console.log("key: " + req.body.key)
-      console.log("key: " + req.body.parameter)
-      console.log("key: " + req.body.did)
+      console.log("parameter: " + req.body.parameter)
+      console.log("did: " + req.body.did)
       client.get(req.body.key, async (err, data) => {
         if(err) {
           res.statusCode = 500
