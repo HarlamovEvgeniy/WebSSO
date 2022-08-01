@@ -40,9 +40,9 @@ router.get('/url', cors(), async (req, res) => {
       }
 
 
-      res.redirect(response.url);
-      // res.statusCode = 200;
-      // return res.json(response);
+      // res.redirect(response.url);
+      res.statusCode = 200;
+      return res.json(response);
     } else {
       res.statusCode = 302;
       return res.json('No Query Endpoint & No Query Method');
