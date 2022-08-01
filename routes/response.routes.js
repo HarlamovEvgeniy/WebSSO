@@ -31,7 +31,7 @@ router.post('/mobileauth', cors(), async (req, res) => {
                 res.statusCode = 500
                 return res.json(err)
             }
-            await client.setEx(key, data, JSON.stringify(json));
+            await client.setEx(req.body.key, data, JSON.stringify(json));
         })
           res.sendStatus(200)
         } else {
