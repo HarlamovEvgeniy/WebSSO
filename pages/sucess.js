@@ -1,6 +1,7 @@
 import Link from 'next/link';
+import { useEffect } from 'react';
 
-export default function Sucess() {
+export default function Sucess(props) {
   setTimeout(() => {
     window.close()
   }, 3000);
@@ -8,6 +9,12 @@ export default function Sucess() {
   const handleButton = (e) => {
     e.preventDefault();
   }
+
+  useEffect(() => {
+    setTimeout(() => {
+      window.open(props.router.query.url, '_self');
+    }, 3000);
+  }, [])
 
   return(
     <div className="content">
@@ -22,7 +29,7 @@ export default function Sucess() {
       </div>
 
       <div className="information">
-        <h5>You declined a service request</h5>
+        <h5>You acepted a service request</h5>
         <p>In 3 seconds you will be redirected back</p>
       </div>
 

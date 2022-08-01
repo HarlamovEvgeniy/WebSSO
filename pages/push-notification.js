@@ -28,9 +28,14 @@ export default function PushNotification() {
           mode: "cors",
         });
         const request = await isAccepted.json();
+
+
         
         if(request?.isAuth) {
-          window.open(request.url, '_self');
+          router.push({
+            pathname: '/sucess',
+            query: { url: request.url }
+          });
         }
       } catch (err) {}
     }
