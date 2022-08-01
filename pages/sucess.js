@@ -11,9 +11,10 @@ export default function Sucess(props) {
   }
 
   useEffect(() => {
-    setTimeout(() => {
-      window.open(props.router.query.url, '_self');
-    }, 3000);
+    console.log(props.router.query);
+    // setTimeout(() => {
+    //   window.open(props.router.query.url, '_self');
+    // }, 3000);
   }, [])
 
   return(
