@@ -7,6 +7,7 @@ const { client } = require('../utils/storage/redis');
 const btoa = require('btoa')
 
 router.get('/auth', cors(), async (req, res) => {
+  console.log("request-sessionID: " + req.sessionID)
   try {
     if(req?.session?.key) {
       client.get(req.session.key, async (err, data) => {
@@ -15,6 +16,7 @@ router.get('/auth', cors(), async (req, res) => {
           return res.json(err)
         }
         var json = JSON.parse(data)
+        console.log("request-isAuth: " + json?.isAuth || "non")
         if(json?.isAuth) {
           if(req.session.method.toUpperCase() == "POST") {
             var ress = await fetch(req.session.endpoint, {
