@@ -12,6 +12,7 @@ module.exports = {
     return new Promise(async (resolve, reject) => {
       try {
         let document = await SDK.resolveDIDDocument(did);
+        
         let check = 
         await verifyMessage(value, signature, document.didDocument.verificationMethod.publicKeyMultibase);
 
