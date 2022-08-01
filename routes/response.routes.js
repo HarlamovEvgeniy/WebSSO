@@ -26,7 +26,7 @@ router.post('/mobileauth', cors(), async (req, res) => {
           }
           json.isAuth = isAuth
           json.did = req.body.did
-          client.ttl(key, async (err, data) => {
+          client.ttl(req.body.key, async (err, data) => {
             if(err) {
                 res.statusCode = 500
                 return res.json(err)
