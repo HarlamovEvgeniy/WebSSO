@@ -35,10 +35,6 @@ router.get('/auth', cors(), async (req, res) => {
               did: json.did
             })).toString()
             console.log("URL: " + url)
-            res.setHeader("Access-Control-Allow-Origin", "*");
-            res.setHeader("Access-Control-Allow-Credentials", "true");
-            res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
-            res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
             res.json({
               isAuth: json.isAuth,
               url: url
@@ -47,7 +43,7 @@ router.get('/auth', cors(), async (req, res) => {
             res.sendStatus(501)
           }
         } else {
-          res.sendStatus(102)
+          res.sendStatus = 102
           res.json({
             isAuth: false
           })
