@@ -160,12 +160,11 @@ export default function QRCode({ message, sessionID }) {
 }
 
 export async function getServerSideProps(context) {
-  
 
   return {
     props: {
       sessionID: context?.req?.sessionID ?? null,
-      message: context?.query ?? null
+      message: context?.query ?? null,
     },
   }
 }

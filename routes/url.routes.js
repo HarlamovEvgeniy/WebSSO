@@ -18,7 +18,7 @@ router.get('/url', cors(), async (req, res) => {
       console.log(req.session.endpoint);
       console.log(req.session.key);
 
-      console.log('Session ID URL: ', req.sessionID);
+      console.log('Session ID URL:', req.sessionID);
       
       var key = req.session.key;
       var data = {
