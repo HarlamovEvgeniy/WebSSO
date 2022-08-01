@@ -16,6 +16,7 @@ router.get('/mobile', cors(), async (req, res) => {
                     res.json(err)
                 }
                 var json = JSON.parse(data)
+                console.log("isMobile:" + json?.isMobile || "non")
                 if(json?.isMobile) {
                     res.statusCode = 200
                     res.json({
