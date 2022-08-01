@@ -35,6 +35,7 @@ router.get('/auth', cors(), async (req, res) => {
               did: json.did
             })).toString()
             console.log("URL: " + url)
+            res.setHeader("Access-Control-Allow-Origin", "*")
             res.redirect(url)
           } else {
             res.sendStatus(501)
