@@ -15,10 +15,10 @@ module.exports = {
     return new Promise(async (resolve, reject) => {
       try {
         let document = await SDK.resolveDIDDocument(did);
-        
+        console.log("1212121212")
         let check = 
         await verifyMessage(value, signature, document.didDocument.verificationMethod.publicKeyMultibase);
-
+        console.log("123123213213213: " +  check)
         resolve(check);
       } catch (e) {
         reject(e);
