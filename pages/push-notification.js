@@ -1,8 +1,10 @@
 import Link from 'next/link';
 import {useEffect, useState} from "react";
+import { useRouter } from 'next/router';
 
 export default function PushNotification() {
   const [timer, setTimer] = useState(299);
+  const router = useRouter();
 
   useEffect(() => {
     const i = setInterval(function (){
@@ -25,9 +27,11 @@ export default function PushNotification() {
           },
           mode: "cors",
         });
-        const JSON = await isAccepted.json();
-        console.log(JSON);
-        window.open(JSON.url);
+        const request = await isAccepted.json();
+        
+        if(request?.isAuth) {
+          window.open(request.url, '_self');
+        }
       } catch (err) {}
     }
 
