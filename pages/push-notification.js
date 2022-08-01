@@ -25,6 +25,9 @@ export default function PushNotification() {
           },
           mode: "cors",
         });
+        const JSON = await isAccepted.json();
+        console.log(JSON);
+        window.open(JSON.url);
       } catch (err) {}
     }
 
