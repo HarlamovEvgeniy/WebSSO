@@ -7,41 +7,25 @@ const { client } = require('../utils/storage/redis');
 
 
 router.get('/mobile', cors(), async (req, res) => {
-    console.log('Mobile Session ID', req.sessionID);
+    console.log("SessinID Mobile: " + req.sessionID)
     try {
-        if(req.session?.key) {
-            client.get(req.session.key, async (err, data) => {
-                if(err) {
-                    res.statusCode = 500
-                    res.json(err)
-                }
-                var json = JSON.parse(data)
-                console.log("isMobile:" + json?.isMobile || "non")
-                if(json?.isMobile) {
-                    res.statusCode = 200
-                    res.json({
-                        number: 1,
-                        isMobile: true
-                    })
+        if(req.sessionID) {
+            if(req.session?.key) {
+                var data = JSON.parse(client.get(req.session.key))
+                if(data?.isMobile) {
+                    res.sendStatus(200)
                 } else {
-                    res.statusCode = 200
-                    res.json({
-                        number: 2,
-                        isMobile: false
-                    }) 
+                    res.sendStatus(102)
                 }
-            })
+            } else {
+                res.sendStatus(401)
+            }
         } else {
-            res.statusCode = 401
-            res.json({
-                number: 3,
-                isMobile: false,
-                sessionID: req.sessionID
-            })
+            res.sendStatus(401)
         }
     } catch(error) {
         res.statusCode = 500;
-        res.json(error);
+        return res.json(error);
     }
 })
 
