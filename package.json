@@ -23,7 +23,6 @@
     "dependencies": {
         "@eversdk/core": "^1.36.1",
         "@eversdk/lib-node": "^1.36.1",
-        "@radianceteam/vc": "file:everscale-vc-sdk",
         "@tonclient/core": "^1.30.0",
         "@tonclient/lib-node": "^1.30.0",
         "btoa": "^1.2.1",
@@ -32,6 +31,7 @@
         "cors": "^2.8.5",
         "crypto": "^1.0.1",
         "everscale-did-sdk-radiance": "^0.1.3",
+        "everscale-vc-sdk-radiance": "^1.0.1",
         "express": "^4.18.1",
         "express-session": "^1.17.3",
         "fs": "^0.0.1-security",

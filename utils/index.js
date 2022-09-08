@@ -1,6 +1,6 @@
 const { randomBytes } = require('crypto');
 const SDK = require('everscale-did-sdk-radiance');
-const VCSdk = require("@radianceteam/vc")
+const VCSdk = require('everscale-vc-sdk-radiance')
 const attributes = require('./attributes');
 const { TonClient } = require('@eversdk/core');
 const { libNode } = require("@eversdk/lib-node")

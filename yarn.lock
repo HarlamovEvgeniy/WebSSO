@@ -628,6 +628,17 @@
     "crypto-js" "^4.1.1"
     "noble-ed25519" "^1.2.6"
 
+"everscale-vc-sdk-radiance@^1.0.1":
+  "integrity" "sha512-FEbiBRKYWRCr5y7TlotzLK7DkBQh0WyiBlGG+cslbYJbhoPHETAL55XjY/lwrATe1TbNY54WgzdxhN3E1DHP1g=="
+  "resolved" "https://registry.npmjs.org/everscale-vc-sdk-radiance/-/everscale-vc-sdk-radiance-1.0.1.tgz"
+  "version" "1.0.1"
+  dependencies:
+    "@eversdk/appkit" "^0.3.1"
+    "@eversdk/core" "^1.36.1"
+    "@eversdk/lib-node" "^1.36.1"
+    "crypto-js" "^4.1.1"
+    "jsonld" "^5.2.0"
+
 "express-session@^1.17.3":
   "integrity" "sha512-4+otWXlShYlG1Ma+2Jnn+xgKUZTMJ5QD3YvfilX3AcocOAbIkVylSWEklzALe/+Pu4qV6TYBj5GwOBFfdKqLBw=="
   "resolved" "https://registry.npmjs.org/express-session/-/express-session-1.17.3.tgz"
