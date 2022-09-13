@@ -4,7 +4,7 @@ const router = Router();
 const utils = require('../utils');
 const redis = require('redis');
 const btoa = require('btoa');
-const { client, adminKey } = require('../utils/storage/redis');
+const { client } = require('../utils/storage/redis');
 const { _HOST, _PORT } = require('../env-config');
 
 router.get('/url', cors(), async (req, res) => {

@@ -67,16 +67,6 @@
   "resolved" "https://registry.npmjs.org/@next/swc-win32-x64-msvc/-/swc-win32-x64-msvc-12.1.6.tgz"
   "version" "12.1.6"
 
-"@radianceteam/vc@file:everscale-vc-sdk":
-  "resolved" "file:everscale-vc-sdk"
-  "version" "1.0.0"
-  dependencies:
-    "@eversdk/appkit" "^0.3.1"
-    "@eversdk/core" "^1.36.1"
-    "@eversdk/lib-node" "^1.36.1"
-    "crypto-js" "^4.1.1"
-    "jsonld" "^5.2.0"
-
 "@redis/bloom@1.0.2":
   "integrity" "sha512-EBw7Ag1hPgFzdznK2PBblc1kdlj5B5Cw3XwI9/oG7tSn85/HKy3X9xHy/8tm/eNXJYHLXHJL/pkwBpFMVVefkw=="
   "resolved" "https://registry.npmjs.org/@redis/bloom/-/bloom-1.0.2.tgz"
