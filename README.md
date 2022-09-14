@@ -1,34 +1,43 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Web Single sign-on(SSO) 
+> A system for unified authentication using SSI on everscale.
 
-## Getting Started
 
-First, run the development server:
+## Table of Contents
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+- [Description](#description)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Description
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+**Single sign-on(SSO)** - метод аутентификации, который позволяет пользователям безопасно аутентифицироваться сразу в нескольких приложениях и сайтах, используя один набор учетных данных.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+В нашем случае метод SSO изменено и работает следующем способом:
 
-## Learn More
+1) Пользователь заходит на сайт или приложение, доступ на котором он хочет получить, то есть провайдер услуг.
+2) Провайдер услуг отправляет токен, с информацией о пользователе и данных которые он хочет получить от пользователя на SSO(система управления доступом), как часть запроса на аутентификацию.
+3) В первую очередь система управления доступом проверяет был ли пользователь авторизирован и какие данные от пользователя необходимы провайдеру услуг. Если он был авторизирован и провайдеру не нужны данные от пользователя то он переходит сразу на шаг 6.
+4) Если пользователь не авторизован, то он должен будет пройти авторизацию или регистрацию в система контроля доступом.
+5) Если провайдеру услуг нужны дополнительные данные от пользователя, то он сделает запрос на получение данных и разрешением их использовать от пользователя.
+6) Как только система управления доступами одобрит идентификационные данные, она вернет токен провайдеру услуг, подтверждая успешную аутентификацию.
+7) Этот токен проходит “сквозь браузер” пользователя провайдеру услуг.
+8) Токен, полученный провайдером услуг, подтверждается согласно доверительным отношениям, установленным между провайдером услуг и системой управления доступами во время первоначальной настройки.
+9) Пользователю предоставляется доступ к провайдеру услуг.
 
-To learn more about Next.js, take a look at the following resources:
+Наш метод аутентификации, является так же верификатором в треугольнике доверия SSI и позволяет провайдорма услуг использовать SSI. Это облегчит им этапы разработки и внедрения SSI в свои системы.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Self-sovereign identity(SSI)
 
-## Deploy on Vercel
+**Self-sovereign identity(SSI)** - это подход к цифровой идентификации, который дает людям контроль над информацией, которую они используют, чтобы доказать, кто они, веб-сайтам, службам и приложениям в Интернете.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Для идентификации пользователя в сети интернет используют DID.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+**DID** -  глобально уникальный идентификатор, который не требует централизованной регистрации и чаще всего генерируется и/или регистрируется криптографически. DID может относиться к любому субъекту(человек, организация, вещи, модели данных, абстрактному объекту и т.д.)
+
+Все личные данные пользователя в системе SSI храняться в VC.
+
+**Verifiable credential(VC)** - это защищенные от несанкционированного доступа учетные данные, авторство которых может быть проверено криптографически.
+
+### Mobile App
+
+Мобильное приложение предостовляет удобный интерфейс для пользователей. В нем они могут пройти регистрацию и получить DID. Так же в приложениее они могут хранить VC и создавать из них VP.
