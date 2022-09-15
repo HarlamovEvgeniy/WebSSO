@@ -1,5 +1,5 @@
 # Web Single sign-on(SSO) 
-> A system for unified authentication using SSI on everscale.
+> A free unified authentication platform using the SSI architecture built on the Everscale blockchain. Allows developers to use SSI in their products, and makes its use easier.
 
 
 ## Table of Contents
@@ -16,9 +16,6 @@
 **Single sign-on(SSO)** - метод аутентификации, который позволяет пользователям безопасно аутентифицироваться сразу в нескольких приложениях и сайтах, используя один набор учетных данных.
 
 **Verifiable credential(VC)** - это защищенные от несанкционированного доступа учетные данные, авторство которых может быть проверено криптографически.
-
-
-
 
 ## Description
 
@@ -44,3 +41,5 @@ SSO является частью экосистемы SSI, и играет ро
 ### Mobile App
 
 Мобильное приложение предостовляет удобный интерфейс для пользователей. В нем они могут пройти регистрацию и получить DID. Так же в приложениее они могут хранить VC и создавать из них VP.
+
+
