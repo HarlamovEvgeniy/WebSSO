@@ -63,6 +63,10 @@ https://sso-defispace.ru/api/url
 3) data\[attributes\] - Массив названий атрибутов, которые необходимы для аутентификации пользователя. Это параметр не является обязательным! Посмотреть название всех атрибутов с которыми работает наша система, можно [здесь](https://schema.org/)
 
 #### Пример готового endpoint
+```
 https://sso-defispace.ru/api/url?endpoint=https://your/address/auth&method=GET
+```
 или если необходимы атрибуты
-https://sso-defispace.ru/api/url?endpoint=https://your/address/auth&method=GET&data\[attributes\]=familyName&data\[attributes\]=givenName
+```
+https://sso-defispace.ru/api/url?endpoint=https://your/address/auth&method=GET&data[attributes]=familyName&data[attributes]=givenName
+```
