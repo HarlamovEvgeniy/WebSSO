@@ -71,6 +71,23 @@ https://sso-defispace.ru/api/url?endpoint=https://your/address/auth&method=GET
 https://sso-defispace.ru/api/url?endpoint=https://your/address/auth&method=GET&data[attributes]=familyName&data[attributes]=givenName
 ```
 
+Пример реализации на js:
+```js
+const express = require('express');
+
+const app = express();
+
+const host = "127.0.0.1";
+const port = "3000";
+
+app.get("./", async(req, res) => {
+    res.redirect("https://sso-defispace.ru/api/url?endpoint=https://your/address/auth&method=GET&data[attributes]=familyName&data[attributes]=givenName"); //
+});
+
+app.listen(port, host);
+
+```
+
 ### Функция приема ответа
 Может быть реализованна с использованием разных методов запроса - GET или POST.
 Принимает:
@@ -78,6 +95,24 @@ https://sso-defispace.ru/api/url?endpoint=https://your/address/auth&method=GET&d
 
 #### GET запрос
 После успешной аутентификации, SSO создает из endpoint который получил от поставщика услуг и создает URL с query параметрами. Делает переадресацию на созданный URL.
+
+Пример реализации на js:
+```js
+const express = require("express");
+
+const app = express();
+
+app.get("/auth", async (req, res) => {
+    try {
+        if(req?.query?.did && req?.query?.auth) {
+            //further authorization actions in your service
+        }
+    } catch(error) {
+        // error handling
+    }
+})
+
+```
 
 #### POST запрос
 Принимает параметры в body. После удачной отправки данных через POST запрос. SSO делает переадресацию на тот же endpoint, на который до этого был отправлен POST запрос.
