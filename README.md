@@ -136,10 +136,10 @@ app.post("./auth", async(req, res) => {
 ```
 
 ## Используемые технологии
-1) node js
-2) eversdk
-3) express
-4) next js
-5) react
-6) did:everscale
+1) node js - >=v16.15.1
+2) [eversdk](https://github.com/tonlabs/ever-sdk-js) - JavaScript Everscale SDK.
+3) [express](https://www.npmjs.com/package/express) - Fast, unopinionated, minimalist web framework for node.
+4) [next js](https://nextjs.org/) - an open JavaScript framework built on top of React.js for creating web applications, created by Vercel. The framework was designed to solve the React problem.js related to rendering the application on the server side - SSR. It works on the server and in the browser.
+5) [React](https://ru.reactjs.org/) - JavaScript library for creating user interfaces.
+6) [did:everscale](https://git.defispace.com/ssi-4/everscale-did-registry) - the did method implemented on the basis of the everscale blockchain.
 
