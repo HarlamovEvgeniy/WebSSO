@@ -11,10 +11,9 @@ module.exports = {
   },
 
   login: (did, value, signature) => {
-    TonClient.useBinaryLibrary(libNode)
     return new Promise(async (resolve, reject) => {
       try {
-        let document = await SDK.resolveDIDDocument(did);
+        let document = await SDK.resolveDIDDocument({did: did});
         let check = 
         await verifyMessage(value, signature, document.didDocument.verificationMethod.publicKeyMultibase);
         resolve(check);

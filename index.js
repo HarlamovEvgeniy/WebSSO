@@ -11,6 +11,7 @@ const nextServer = next({ dev });
 const handle = nextServer.getRequestHandler();
 const { _PORT, _HOST } = require('./env-config');
 const { initConnect } = require('./utils/storage/redis');
+const { TonClient } = require('@eversdk/core');
 
 nextServer.prepare().then(() => {
   const app = express();
@@ -39,8 +40,9 @@ nextServer.prepare().then(() => {
 
   app.listen(_PORT, async (req, res) => {
     console.log('Server Started on PORT: ' + _PORT + '& HOST: ' + _HOST);
+    TonClient.useBinaryLibrary(libNode);
     await clientSession.connect();
-    initSettings("devNet", libNode);
+    initSettings({network: "devNet"});
     await initConnect();
   });
   

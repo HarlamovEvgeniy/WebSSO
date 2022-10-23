@@ -1,76 +1,79 @@
 # Web Single sign-on(SSO) 
-> A free unified authentication platform using the SSI architecture built on the Everscale blockchain. Allows developers to use SSI in their products, and makes integration easier.
+> A free unified authentication platform using the SSI architecture built on the Everscale blockchain. Allows developers to use SSI in their products, and makes integration easier. This is the MVP version.
 
 
 ## Table of Contents
 
 - [Description](#description)
 - [How does SSO work?](#how-does-sso-work)
+- [How to use](#how-to-use)
+- [Technologies used](#technologies-used)
 
 ## Description
 
-**Single sign-on(SSO)** - метод аутентификации, который позволяет пользователям безопасно аутентифицироваться сразу в нескольких приложениях и сайтах, используя один набор учетных данных. В качестве подхода к авторизации мы используем SSI.<br>
+**Single sign-on(SSO)** is authentication method that allows users to securely authenticate to multiple applications and sites at once using a single set of credentials. As an approach to authorization, we use SSI.<br>
 
-**Self-sovereign identity(SSI)** - это подход к цифровой идентификации, который дает людям контроль над ифнормацией, которую они используют для подтверждения своей личности веб-сайтам, службам и приложениям в интернете. Чтобы люди могли иметь постоянные учетные записи, они пологаються на крупных поставщиков учетных записей, таких как Google. Если пользователь решает не использовать крупного поставщика учетных записей, он создает у каждого поставщика услуг свою. <br>
-SSI предостволяет иной подход, в котором пользователь существует независимо от служб. Это позволяет пользователю получить доступ к упрощенному и безопасному способу, при котором за ним сохраняется полный контроль над информацией, связанной с его личностью.<br>
+**Self-sovereign identity(SSI)** is an approach to digital identification that gives people control over the information they use to verify their identity to websites, services and applications on the Internet. In order for people to have permanent accounts, they rely on large account providers like Google. If the user decides not to use a large account provider, he creates his own for each service provider. <br>
+SSI provides a different approach in which the user exists independently of the services. This allows the user to gain access to a simplified and secure way in which he retains full control over information related to his identity.<br>
 
-В качестве идентификатора мы используем глобально уникальный идентификатор **DID**. Который не требует централизованной регистрации и чаще всего генерируется и/или регестрируется криптографически. DID может относиться к любому субъекту(человек, организация, вещи, модели данных, абстрактному объекту и т.д.)
+As an identifier, we use the globally unique identifier **DID**. Which does not require centralized registration and is most often generated and/or registered cryptographically. DID can refer to any subject (person, organization, things, data models, abstract object, etc.)
 
-Для хранения данных пользователя мы используем **Verifiable credential(VC)** - это защищенные от несанкционированного доступа учетные данные, авторство которых может быть проверено криптографически. <br> 
-Пользователь может получить VC от любого постащика услуг, но использовать для аутентификации только VC полученные от проверенных поставщиков.
+To store user data, we use **Verifiable credential(VC)** is credentials protected from unauthorized access, the authorship of which can be verified cryptographically. <br> 
+A user can get a VC from any service provider, but use only VC received from trusted providers for authentication.
 
 
-Более подробно про DID можно прочитать [здесь](https://www.w3.org/TR/did-core/)<br>
-Более подробно про VC можно прочитать [здесь](https://www.w3.org/TR/vc-data-model/)
+You can read more about DID [here](https://www.w3.org/TR/did-core/)<br>
+You can read more about VC [here](https://www.w3.org/TR/vc-data-model/)
 
 
 ## How does SSO work?
 
 
-SSO базируется на настройке доверительных отношений между приложением, известным как провайдер услуг, и системой управления доступами. Такие доверительные отношения часто базируются на обмене сертификатом между системой управления доступами и провайдером услуг. Такой сертификат может использоваться, чтобы обозначить идентификационную информацию, которая отправляется от системы управления доступами провайдеру услуг, таким образом провайдер услуг будет знать, что информация поступает из надежного источника. В SSO идентификационные данные принимают форму токенов, содержащих идентификационные значения информации о пользователе такие, как DID или VC.
+SSO is based on setting up a trust relationship between an application known as a service provider and an access management system. Such trust relationships are often based on the exchange of a certificate between an access management system and a service provider. Such a certificate can be used to indicate the identification information that is sent from the access management system to the service provider, so the service provider will know that the information comes from a reliable source. In SSO, identification data takes the form of tokens containing identification values of user information such as DID or VC.
 
 
-Порядок авторизации обычно выглядит следующим образом:
-1) Пользователь заходит на сайт или приложение, доступ на котором он хочет получить, то есть провайдер услуг.
-2) Провайдер услуг отправляет токен, с информацией о пользователе и данных которые он хочет получить от пользователя на SSO(система управления доступом), как часть запроса на аутентификацию.
-3) В первую очередь система управления доступом проверяет был ли пользователь авторизирован и какие данные от пользователя необходимы провайдеру услуг. Если он был авторизирован и провайдеру не нужны данные от пользователя то он переходит сразу на шаг 6.
-4) Если пользователь не авторизован, то он должен будет пройти авторизацию или регистрацию в система контроля доступом.
-5) Если провайдеру услуг нужны дополнительные данные от пользователя, то он запросит их от пользователя.
-6) Как только система управления доступами одобрит идентификационные данные, она вернет токен провайдеру услуг, подтверждая успешную аутентификацию.
-7) Этот токен проходит “сквозь браузер” пользователя провайдеру услуг.
-8) Токен, полученный провайдером услуг, подтверждается согласно доверительным отношениям, установленным между провайдером услуг и системой управления доступами во время первоначальной настройки.
-9) Пользователю предоставляется доступ к провайдеру услуг.
+The authorization procedure usually looks like this:
+1) The user visits the website or application that he wants to access, that is, the service provider.
+2) The service provider sends a token with information about the user and the data he wants to receive from the user to the SSO (access control system) as part of the authentication request.
+3) First of all, the access control system checks whether the user has been authorized and what data from the user is needed by the service provider. If he was authorized and the provider does not need data from the user, then he goes straight to step 6.
+4) If the user is not authorized, then he will have to pass authorization or registration in the access control system.
+5) If the service provider needs additional data from the user, it will request it from the user.
+6) As soon as the access control system approves the identification data, it will return the token to the service provider, confirming successful authentication.
+7) This token passes “through the user's browser” to the service provider.
+8) The token received by the service provider is confirmed according to the trust relationship established between the service provider and the access management system during the initial setup.
+9) The user is granted access to the service provider.
 
 
-## Как использовать
+## How to use
 
-Для использования SSO необходимо реализовать 2 функции отправки данных на аутентификацию и прием данных обратно.
+To use SSO, it is necessary to implement 2 functions of sending data for authentication and receiving data back.
 
-### Функция отправки данных на SSO
-Для того, чтобы создать запрос на аутентификацию пользователя через нашу систему, необходимо реализовать следующий функционал:
-1) Создать endpoint с query параметрами
-2) Реализовать переадресацию на только что созданный endpoint.
 
-#### Ендпоинт для переадресации
+### The function of sending data to SSO
+In order to create a user authentication request through our system, it is necessary to implement the following functionality:
+1) Create an endpoint with query parameters.
+2) Implement redirection to the newly created endpoint.
+
+#### Endpoint for forwarding
 ```
 https://sso-defispace.ru/api/url
 ```
 
-#### Параметры query
-1) endpoint - URL на который необходимо будет отправить ответ об авторизации.
-2) method - метод запроса, на который будет отправлен ответ(GET, POST)
-3) data\[attributes\] - Массив названий атрибутов, которые необходимы для аутентификации пользователя. Это параметр не является обязательным! Посмотреть название всех атрибутов с которыми работает наша система, можно [здесь](https://schema.org/)
+#### Query parameters
+1) endpoint - The URL to which you will need to send an authorization response.
+2) method - the method of the request to which the response will be sent (GET, POST)
+3) data\[attributes\] - Array of attribute names that are required for user authentication. This parameter is optional! You can see the name of all the attributes that our system works with [here](https://schema.org/)
 
-#### Пример готового endpoint
+#### Example of a ready endpoint
 ```
 https://sso-defispace.ru/api/url?endpoint=https://your/address/auth&method=GET
 ```
-или если необходимы атрибуты
+or if attributes are needed
 ```
 https://sso-defispace.ru/api/url?endpoint=https://your/address/auth&method=GET&data[attributes]=familyName&data[attributes]=givenName
 ```
 
-Пример реализации на js:
+Example of implementation in js:
 ```js
 const express = require('express');
 
@@ -87,15 +90,16 @@ app.listen(port, host);
 
 ```
 
-### Функция приема ответа
-Может быть реализованна с использованием разных методов запроса - GET или POST.
-Принимает:
+### Response reception function
+It can be implemented using different request methods - GET or POST.
+Accepts:
 1) did
+2) auth(bool) - authorization result
 
-#### GET запрос
-После успешной аутентификации, SSO создает из endpoint который получил от поставщика услуг и создает URL с query параметрами. Делает переадресацию на созданный URL.
+#### GET request
+After successful authentication, the SSO creates from the endpoint that it received from the service provider and creates a URL with query parameters. Redirects to the created URL.
 
-Пример реализации на js:
+Example of implementation in js:
 ```js
 const express = require("express");
 
@@ -113,10 +117,10 @@ app.get("/auth", async (req, res) => {
 
 ```
 
-#### POST запрос
-Принимает параметры в body. После удачной отправки данных через POST запрос. SSO делает переадресацию на тот же endpoint, на который до этого был отправлен POST запрос.
+#### POST request
+Accepts parameters in body. After successfully sending data via a POST request. SSO redirects to the same endpoint to which the POST request was sent before.
 
-Пример реализации на js:
+Example of implementation in js:
 ```js
 const express = require("express");
 
@@ -132,14 +136,12 @@ app.post("./auth", async(req, res) => {
     }
 });
 
-
 ```
 
-## Используемые технологии
-1) node js - >=v16.15.1
+## Technologies used
+1) node js - >= v16.15.1
 2) [eversdk](https://github.com/tonlabs/ever-sdk-js) - JavaScript Everscale SDK.
 3) [express](https://www.npmjs.com/package/express) - Fast, unopinionated, minimalist web framework for node.
 4) [next js](https://nextjs.org/) - an open JavaScript framework built on top of React.js for creating web applications, created by Vercel. The framework was designed to solve the React problem.js related to rendering the application on the server side - SSR. It works on the server and in the browser.
 5) [React](https://ru.reactjs.org/) - JavaScript library for creating user interfaces.
 6) [did:everscale](https://git.defispace.com/ssi-4/everscale-did-registry) - the did method implemented on the basis of the everscale blockchain.
-
