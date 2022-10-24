@@ -594,10 +594,10 @@
   "resolved" "https://registry.npmjs.org/event-target-shim/-/event-target-shim-5.0.1.tgz"
   "version" "5.0.1"
 
-"everscale-did-sdk-radiance@^2.0.2":
-  "integrity" "sha512-MxP3YfbwjElF0k/l8OMv5LvfVm/vJuYs9cCrR6TAqVNi9cS5CF40+xNHnDlKswJrS5CshwaNqSzBrZPaNGBtaQ=="
-  "resolved" "https://registry.npmjs.org/everscale-did-sdk-radiance/-/everscale-did-sdk-radiance-2.0.2.tgz"
-  "version" "2.0.2"
+"everscale-did-sdk-radiance@^2.0.3":
+  "integrity" "sha512-saxCCg2UoLYO3x4WJvH1+Vr47w/0Olc+YKkKVIe7tzAb0y1u+I1RL1eG+rrkgXWf3X/37TxhESUW8dXcXqtsrQ=="
+  "resolved" "https://registry.npmjs.org/everscale-did-sdk-radiance/-/everscale-did-sdk-radiance-2.0.3.tgz"
+  "version" "2.0.3"
   dependencies:
     "@eversdk/appkit" "^0.3.1"
     "@eversdk/core" "^1.37.0"
