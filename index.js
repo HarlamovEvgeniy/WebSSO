@@ -34,7 +34,7 @@ nextServer.prepare().then(() => {
   app.use('/api/request', require('./routes/requestQr.routes'));
   app.use('/api/request', require('./routes/requestData.routes'));
   app.use('/api/response', require('./routes/response.routes'));
-  app.get('*', (req, res) => {
+  app.get('/_next/static/development/_devPagesManifest.json', (req, res) => {
     return handle(req, res);
   });
 
